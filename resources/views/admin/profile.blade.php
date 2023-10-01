@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('heading', 'Edit Profile')
+@section('heading', 'Редактировать профиль')
 
 @section('main_content')
     <div class="section-body">
