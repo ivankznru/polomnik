@@ -36,13 +36,13 @@
                                     <div class="form-group">
                                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Пароль" autofocus>
                                         @error('password')
-                                        <div class="text-danger">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control @error('retype_password') is-invalid @enderror" name="retype_password" placeholder="Повторить пароль">
                                         @error('retype_password')
-                                        <div class="text-danger">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">

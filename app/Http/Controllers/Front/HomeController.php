@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-
-        return view('front.home');
+        $slide_all = Slide::get();
+        return view('front.home', compact('slide_all'));
     }
 }

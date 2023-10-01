@@ -3,33 +3,24 @@
 @section('main_content')
     <div class="slider">
         <div class="slide-carousel owl-carousel">
-            <div class="item" style="background-image:url(public/uploads/slide1.jpg);">
-                <div class="bg"></div>
-                <div class="text">
-                    <h2>Лучший отель в городе</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero voluptate, veritatis esse dolorem soluta.
-                    </p>
-                    <div class="button">
-                        <a href="">Подробнее</a>
+            @foreach($slide_all as $item)
+                <div class="item" style="background-image:url({{ asset('uploads/'.$item->photo) }});">
+                    <div class="bg"></div>
+                    <div class="text">
+                        <h2>{{ $item->heading }}</h2>
+                        <p>
+                            {!! $item->text !!}
+                        </p>
+                        @if($item->button_text != '')
+                            <div class="button">
+                                <a href="{{ $item->button_url }}">{{ $item->button_text }}</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </div>
-            <div class="item" style="background-image:url(public/uploads/slide1.jpg);">
-                <div class="bg"></div>
-                <div class="text">
-                    <h2>Качество комнат для гостей</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero voluptate, veritatis esse dolorem soluta.
-                    </p>
-                    <div class="button">
-                        <a href="">Подробнее</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
-
 
     <div class="search-section">
         <div class="container">
