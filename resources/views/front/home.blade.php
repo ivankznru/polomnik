@@ -18,7 +18,7 @@
             <div class="item" style="background-image:url(public/uploads/slide1.jpg);">
                 <div class="bg"></div>
                 <div class="text">
-                    <h2>Качественные комнаты для гостей</h2>
+                    <h2>Качество комнат для гостей</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero voluptate, veritatis esse dolorem soluta.
                     </p>
@@ -29,6 +29,49 @@
             </div>
         </div>
     </div>
+
+
+    <div class="search-section">
+        <div class="container">
+            <form action="cart.html" method="post">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <select name="" class="form-select">
+                                    <option value="">Выберите комнату</option>
+                                    <option value="">Стандартная спальня для пары</option>
+                                    <option value="">Двухместный номер Делюкс для пары</option>
+                                    <option value="">Стандартный четырехместный номер</option>
+                                    <option value="">Четырехместный номер Делюкс</option>
+                                    <option value="">VIP-номер</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <input type="text" name="checkin_checkout" class="form-control daterange1" placeholder="Регистрация и оформление заказа">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <input type="number" name="" class="form-control" min="1" max="30" placeholder="Взрослые">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <input type="number" name="" class="form-control" min="1" max="30" placeholder="Дети">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="submit" class="btn btn-primary">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
 
     <div class="home-feature">
