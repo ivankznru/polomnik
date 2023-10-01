@@ -18,7 +18,7 @@
                             <i class="far fa-user"></i> Редактировать профиль
                         </a>
                         <a href="{{ route('admin_logout') }}" class="dropdown-item has-icon text-danger">
-                            <i class="fas fa-sign-out-alt"></i>Выход из системы
+                            <i class="fas fa-sign-out-alt"></i> Выход из системы
                         </a>
                     </div>
                 </li>

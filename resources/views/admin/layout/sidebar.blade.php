@@ -11,7 +11,6 @@
 
             <li class="active"><a class="nav-link" href="{{ route('admin_home') }}"><i class="fas fa-hand-point-right"></i> <span>Панель</span></a></li>
 
-
         </ul>
     </aside>
 </div>
