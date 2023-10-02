@@ -4,7 +4,7 @@
     <div class="slider">
         <div class="slide-carousel owl-carousel">
             @foreach($slide_all as $item)
-                <div class="item" style="background-image:url({{ asset('uploads/'.$item->photo) }});">
+                <div class="item" style="height: 400px; background-image:url({{ asset('uploads/'.$item->photo) }}); ">
                     <div class="bg"></div>
                     <div class="text">
                         <h2>{{ $item->heading }}</h2>
@@ -22,6 +22,111 @@
         </div>
     </div>
 
+   
+
+
+    <div class="home-feature">
+        <div class="container">
+            <div class="row">
+               
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="icon"><i class="fa fa-superpowers"></i></div>
+                        <div class="text">
+                            <h2>Экскурсии по религиозным местам Казани</h2>
+                            <p>
+                                На нашем сайте можно заказать экскурсию по религиозным местам Казани с квалифицированным экскурсоводом
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="icon"><i class="fa fa-money"></i></div>
+                        <div class="text">
+                            <h2>Сделать пожертвование</h2>
+                            <p>
+                                 На нашем сайте можно сделать пожертвование на выбранный Вами религиозный объект, деньги поступят в течение нескольких секунд
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="icon"><i class="fa fa-cubes"></i></div>
+                        <div class="text">
+                            <h2>Молельные залы</h2>
+                            <p>
+                                Выберите зал и время для уединенной молитвы
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="icon"><i class="fa fa-crosshairs"></i></div>
+                        <div class="text">
+                            <h2>Религиозная литература</h2>
+                            <p>
+                                Можно заказать книгу по выбранной вами тематике
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="icon"><i class="fa fa-clock-o"></i></div>
+                        <div class="text">
+                            <h2>Оставить заявку на молитву</h2>
+                            <p>
+                                Здесь Вы можете выбрать вид молитвы, разместить список Ваших родных и желаемый храм, либо мечеть
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="icon"><i class="fa fa-wifi"></i></div>
+                        <div class="text">
+                            <h2>Все для совершения обрядов</h2>
+                            <p>
+                            Участники получают доступ к эксклюзивным скидкам проекта Visit Tatarstan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="icon"><i class="fa fa-coffee"></i></div>
+                        <div class="text">
+                            <h2>Национальная татарская одежда и сувениры</h2>
+                            <p>
+                            Питание по религиозным стандартам в зависимости от выбранной программы
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+               
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="icon"><i class="fa fa-cutlery"></i></div>
+                        <div class="text">
+                            <h2>Питание по стандартам халяль</h2>
+                            <p>
+                                Соблюдаем все стандарты питания!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="testimonial" style="margin-top: 0px; padding-top: 0px; margin-bottom: 10px">
+              
+    </div>
     <div class="search-section">
         <div class="container">
             <form action="cart.html" method="post">
@@ -31,10 +136,10 @@
                             <div class="form-group">
                                 <select name="" class="form-select">
                                     <option value="">Выберите комнату</option>
-                                    <option value="">Стандартная спальня для пары</option>
-                                    <option value="">Двухместный номер Делюкс для пары</option>
+                                    <option value="">Стандартный номер</option>
+                                    <option value="">Улучшенный номер </option>
                                     <option value="">Стандартный четырехместный номер</option>
-                                    <option value="">Четырехместный номер Делюкс</option>
+                                    <option value="">Улучшенный четырехместный номер</option>
                                     <option value="">VIP-номер</option>
                                 </select>
                             </div>
@@ -64,135 +169,21 @@
     </div>
 
 
-
-    <div class="home-feature">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-clock-o"></i></div>
-                        <div class="text">
-                            <h2>Круглосуточное обслуживание номеров</h2>
-                            <p>
-                                Если вы найдете онлайн-тариф по более низкой цене, мы подберем его и предоставим вам дополнительную скидку в размере 25% на ваше пребывание.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-wifi"></i></div>
-                        <div class="text">
-                            <h2>Бесплатный Wifi</h2>
-                            <p>
-                                Если вы найдете онлайн-тариф по более низкой цене, мы подберем его и предоставим вам дополнительную скидку в размере 25% на ваше пребывание.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-superpowers"></i></div>
-                        <div class="text">
-                            <h2>Наслаждайтесь бесплатными ночами</h2>
-                            <p>
-                                Если вы найдете онлайн-тариф по более низкой цене, мы подберем его и предоставим вам дополнительную скидку в размере 25% на ваше пребывание.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-money"></i></div>
-                        <div class="text">
-                            <h2>Экономьте до 40%</h2>
-                            <p>
-                                Участники получают доступ к эксклюзивным скидкам на Radissonblu.ru . Еще не член клуба? Поторопись!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-coffee"></i></div>
-                        <div class="text">
-                            <h2>Бесплатный завтрак</h2>
-                            <p>
-                                Если вы найдете онлайн-тариф по более низкой цене, мы подберем его и предоставим вам дополнительную скидку в размере 25% на ваше пребывание.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-crosshairs"></i></div>
-                        <div class="text">
-                            <h2>Плавательный бассейн</h2>
-                            <p>
-                                Если вы найдете онлайн-тариф по более низкой цене, мы подберем его и предоставим вам дополнительную скидку в размере 25% на ваше пребывание.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-cubes"></i></div>
-                        <div class="text">
-                            <h2>Тренажерный зал и фитнес</h2>
-                            <p>
-                                Если вы найдете онлайн-тариф по более низкой цене, мы подберем его и предоставим вам дополнительную скидку в размере 25% на ваше пребывание.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-cutlery"></i></div>
-                        <div class="text">
-                            <h2>Ресторан высшего класса</h2>
-                            <p>
-                                Участники получают доступ к эксклюзивным скидкам на Radissonblu.ru . Еще не член клуба? Поторопись!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
     <div class="home-rooms">
+         
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <h2 class="main-header">Номера и люксы</h2>
-                </div>
+               
             </div>
+            
             <div class="row">
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="photo">
-                            <img src="uploads/1.jpg" alt="">
-                        </div>
-                        <div class="text">
-                            <h2><a href="">Стандартная супружеская кровать</a></h2>
-                            <div class="price">
-                                ₽100/Ночь
-                            </div>
-                            <div class="button">
-                                <a href="room-detail.html" class="btn btn-primary">Смотрите подробности</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-3">
                     <div class="inner">
                         <div class="photo">
                             <img src="uploads/2.jpg" alt="">
                         </div>
                         <div class="text">
-                            <h2><a href="">Стандартная супружеская кровать</a></h2>
+                            <h2><a href="">Стандартная кровать</a></h2>
                             <div class="price">
                                 ₽100/Ночь
                             </div>
@@ -208,23 +199,7 @@
                             <img src="uploads/3.jpg" alt="">
                         </div>
                         <div class="text">
-                            <h2><a href="">Стандартная супружеская кровать</a></h2>
-                            <div class="price">
-                                ₽100/Ночь
-                            </div>
-                            <div class="button">
-                                <a href="room-detail.html" class="btn btn-primary">Смотрите подробности</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="photo">
-                            <img src="uploads/4.jpg" alt="">
-                        </div>
-                        <div class="text">
-                            <h2><a href="">Стандартная супружеская кровать</a></h2>
+                            <h2><a href="">Стандартная  кровать</a></h2>
                             <div class="price">
                                 ₽100/Ночь
                             </div>
@@ -240,7 +215,7 @@
                             <img src="uploads/5.jpg" alt="">
                         </div>
                         <div class="text">
-                            <h2><a href="">Стандартная супружеская кровать</a></h2>
+                            <h2><a href="">Стандартная  кровать</a></h2>
                             <div class="price">
                                 ₽100/Ночь
                             </div>
@@ -256,7 +231,7 @@
                             <img src="uploads/6.jpg" alt="">
                         </div>
                         <div class="text">
-                            <h2><a href="">Стандартная супружеская кровать</a></h2>
+                            <h2><a href="">Стандартная  кровать</a></h2>
                             <div class="price">
                                 ₽100/Ночь
                             </div>
@@ -266,38 +241,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="photo">
-                            <img src="uploads/7.jpg" alt="">
-                        </div>
-                        <div class="text">
-                            <h2><a href="">Стандартная супружеская кровать</a></h2>
-                            <div class="price">
-                                ₽100/Ночь
-                            </div>
-                            <div class="button">
-                                <a href="room-detail.html" class="btn btn-primary">Смотрите подробности</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="photo">
-                            <img src="uploads/1.jpg" alt="">
-                        </div>
-                        <div class="text">
-                            <h2><a href="">Стандартная супружеская кровать</a></h2>
-                            <div class="price">
-                                ₽100/Ночь
-                            </div>
-                            <div class="button">
-                                <a href="room-detail.html" class="btn btn-primary">Смотрите подробности</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -316,7 +260,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="main-header">Наши довольные клиенты</h2>
+                    <h2 class="main-header">Отзывы наших клиентов</h2>
                 </div>
             </div>
             <div class="row">
@@ -341,8 +285,8 @@
                                 <img src="uploads/t2.jpg" alt="">
                             </div>
                             <div class="text">
-                                <h4>Игорь Петров</h4>
-                                <p>Петербург</p>
+                                <h4>Моххамед аль Фаррах</h4>
+                                <p>Арабские Эмираты</p>
                             </div>
                             <div class="description">
                                 <p>
