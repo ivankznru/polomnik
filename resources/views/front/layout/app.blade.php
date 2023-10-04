@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <title>Веб сайт религиозного туризма</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('uploads/favicon.png') }}">
+    <link rel="icon" type="image/png"  href="{{ asset('uploads/favicon.png') }}">
 
     @include('front.layout.styles')
 
@@ -40,7 +40,7 @@
             <div class="col-md-6 right-side">
                 <ul class="right">
                     <li class="menu"><a href="cart.html">Корзина</a></li>
-                    <li class="menu"><a href="checkout.html">Расчет</a></li>
+                    <li class="menu"><a href="checkout.html">Оформление</a></li>
                     <li class="menu"><a href="signup.html">Зарегистрироваться</a></li>
                     <li class="menu"><a href="login.html">Логин</a></li>
                 </ul>
@@ -68,8 +68,44 @@
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="{{route('home')}}" class="nav-link">Главная страница</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Экскурсии</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:void;" class="nav-link dropdown-toggle">Литература</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Мусульманская</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Православная</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:void;" class="nav-link dropdown-toggle">Заказать</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Требы</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Мусульманские молитвы</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:void;" class="nav-link dropdown-toggle">Календарь</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Мусульманских праздников</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Православных праздников</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('about')}}" class="nav-link">О нас</a>

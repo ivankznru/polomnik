@@ -22,13 +22,13 @@
         </div>
     </div>
 
-   
+
 
 
     <div class="home-feature">
         <div class="container">
             <div class="row">
-               
+
                 <div class="col-md-3">
                     <div class="inner">
                         <div class="icon"><i class="fa fa-superpowers"></i></div>
@@ -36,17 +36,6 @@
                             <h2>Экскурсии по религиозным местам Казани</h2>
                             <p>
                                 На нашем сайте можно заказать экскурсию по религиозным местам Казани с квалифицированным экскурсоводом
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-money"></i></div>
-                        <div class="text">
-                            <h2>Сделать пожертвование</h2>
-                            <p>
-                                 На нашем сайте можно сделать пожертвование на выбранный Вами религиозный объект, деньги поступят в течение нескольких секунд
                             </p>
                         </div>
                     </div>
@@ -86,46 +75,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-wifi"></i></div>
-                        <div class="text">
-                            <h2>Все для совершения обрядов</h2>
-                            <p>
-                            Участники получают доступ к эксклюзивным скидкам проекта Visit Tatarstan.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-coffee"></i></div>
-                        <div class="text">
-                            <h2>Национальная татарская одежда и сувениры</h2>
-                            <p>
-                            Питание по религиозным стандартам в зависимости от выбранной программы
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-               
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-cutlery"></i></div>
-                        <div class="text">
-                            <h2>Питание по стандартам халяль</h2>
-                            <p>
-                                Соблюдаем все стандарты питания!
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="testimonial" style="margin-top: 0px; padding-top: 0px; margin-bottom: 10px">
-              
+
     </div>
     <div class="search-section">
         <div class="container">
@@ -170,17 +125,17 @@
 
 
     <div class="home-rooms">
-         
+
         <div class="container">
             <div class="row">
-               
+
             </div>
-            
+
             <div class="row">
                 <div class="col-md-3">
                     <div class="inner">
                         <div class="photo">
-                            <img src="uploads/2.jpg" alt="">
+                            <img src="uploads/1.jpg" alt="">
                         </div>
                         <div class="text">
                             <h2><a href="">Стандартная кровать</a></h2>
@@ -196,7 +151,7 @@
                 <div class="col-md-3">
                     <div class="inner">
                         <div class="photo">
-                            <img src="uploads/3.jpg" alt="">
+                            <img src="uploads/1.jpg" alt="">
                         </div>
                         <div class="text">
                             <h2><a href="">Стандартная  кровать</a></h2>
@@ -212,7 +167,7 @@
                 <div class="col-md-3">
                     <div class="inner">
                         <div class="photo">
-                            <img src="uploads/5.jpg" alt="">
+                            <img src="uploads/1.jpg" alt="">
                         </div>
                         <div class="text">
                             <h2><a href="">Стандартная  кровать</a></h2>
@@ -228,7 +183,7 @@
                 <div class="col-md-3">
                     <div class="inner">
                         <div class="photo">
-                            <img src="uploads/6.jpg" alt="">
+                            <img src="uploads/1.jpg" alt="">
                         </div>
                         <div class="text">
                             <h2><a href="">Стандартная  кровать</a></h2>
@@ -241,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -271,7 +226,7 @@
                                 <img src="uploads/t1.jpg" alt="">
                             </div>
                             <div class="text">
-                                <h4>Надежда Круглова</h4>
+                                <h4>Вера Белоцерковская</h4>
                                 <p>Москва </p>
                             </div>
                             <div class="description">
@@ -314,7 +269,7 @@
                 <div class="col-md-4">
                     <div class="inner">
                         <div class="photo">
-                            <img src="uploads/1.jpg" alt="">
+                            <img src="uploads/blog1.jpg" alt="">
                         </div>
                         <div class="text">
                             <h2><a href="post.html">Это пример заголовка записи в блоге</a></h2>
@@ -332,7 +287,7 @@
                 <div class="col-md-4">
                     <div class="inner">
                         <div class="photo">
-                            <img src="uploads/2.jpg" alt="">
+                            <img src="uploads/blog2.jpg" alt="">
                         </div>
                         <div class="text">
                             <h2><a href="post.html">Это пример заголовка записи в блоге</a></h2>
@@ -350,7 +305,7 @@
                 <div class="col-md-4">
                     <div class="inner">
                         <div class="photo">
-                            <img src="uploads/3.jpg" alt="">
+                            <img src="uploads/blog3.jpg" alt="">
                         </div>
                         <div class="text">
                             <h2><a href="post.html">Это пример заголовка записи в блоге</a></h2>
@@ -365,6 +320,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

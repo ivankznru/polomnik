@@ -110,7 +110,7 @@ select {
 .top ul li a sup {
 	color: rgb(255, 0, 0);
 }
-@media (max-width: 991px) { 
+@media (max-width: 991px) {
 	.top {
 		padding-top: 3px;
 		padding-bottom: 3px;
@@ -213,6 +213,7 @@ select {
 .main-nav nav .navbar-nav .nav-item {
 	padding-top: 28px;
 	padding-bottom: 28px;
+
 }
 .main-nav nav .navbar-nav .nav-item .dropdown-menu {
 	top: 86px!important;
@@ -251,7 +252,7 @@ select {
 	color: #e00445!important;
 }
 .main-nav img {
-	height: 50px;
+	height: 40px;
 }
 .mobile-nav img {
 	height: 40px;
@@ -426,7 +427,7 @@ select {
 	.search-section .form-control,
 	.search-section .form-select {
 		margin-bottom: 10px;
-	}	
+	}
 }
 .daterangepicker {
 	z-index: 99999;
@@ -440,7 +441,7 @@ select {
 .home-feature {
 	padding-top: 50px;
 	padding-bottom: 20px;
-	background: #f0f0f0;	
+	background: #f0f0f0;
 }
 .home-feature .inner {
 	margin-bottom: 40px;
@@ -801,7 +802,7 @@ select {
 }
 .video-gallery .video-thumb img {
 	width: 100%;
-	height: auto;	
+	height: auto;
 }
 .video-gallery .video-thumb .icon {
 	position: absolute;
@@ -1188,7 +1189,7 @@ select {
 .cart .small {
 	font-size: 13px;
 }
-.cart .table-cart tr th, 
+.cart .table-cart tr th,
 .cart .table-cart tr td {
 	border: 1px solid #c9c9c9!important;
 }
