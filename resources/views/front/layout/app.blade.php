@@ -233,7 +233,7 @@
                             <input type="text" name="" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="Subscribe Now">
+                            <input type="submit" class="btn btn-primary" value="Подписаться">
                         </div>
                     </form>
                 </div>
