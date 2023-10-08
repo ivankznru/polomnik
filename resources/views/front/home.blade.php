@@ -21,11 +21,6 @@
             @endforeach
         </div>
     </div>
-
-
-
-
-
     <div class="home-feature">
         <div class="container">
             <div class="row">
@@ -47,6 +42,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="search-section">
         <div class="container">
             <form action="cart.html" method="post">
@@ -172,52 +169,38 @@
     </div>
 
 
-
-    <div class="testimonial" style="background-image: url(public/uploads/slide2.jpg)">
-        <div class="bg"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="main-header">Наши довольные клиенты</h2>
+        <div class="testimonial" style="background-image: url(uploads/slide2.jpg)">
+            <div class="bg"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="main-header">Наши счастливые посетители</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="testimonial-carousel owl-carousel">
-                        <div class="item">
-                            <div class="photo">
-                                <img src="uploads/t1.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Надежда Круглова</h4>
-                                <p>Москва </p>
-                            </div>
-                            <div class="description">
-                                <p>
-                                    Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens. Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="photo">
-                                <img src="uploads/t2.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Игорь Петров</h4>
-                                <p>Петербург</p>
-                            </div>
-                            <div class="description">
-                                <p>
-                                    Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens. Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens.
-                                </p>
-                            </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="testimonial-carousel owl-carousel">
+                            @foreach($testimonial_all as $item)
+                                <div class="item">
+                                    <div class="photo">
+                                        <img src="{{ asset('uploads/'.$item->photo) }}" alt="">
+                                    </div>
+                                    <div class="text">
+                                        <h4>{{ $item->name }}</h4>
+                                        <p>{{ $item->designation }}</p>
+                                    </div>
+                                    <div class="description">
+                                        <p>
+                                            {!! $item->comment !!}
+                                        </p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
 
 
 
