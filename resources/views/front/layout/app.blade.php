@@ -180,7 +180,9 @@
                     <h2 class="heading">Полезные ссылки</h2>
                     <ul class="useful-links">
                         <li><a href="index.html">Главная страница</a></li>
-                        <li><a href="terms.html">Условия и положения</a></li>
+                        @if($global_page_data->terms_status == 1)
+                            <li><a href="{{ route('terms') }}">{{ $global_page_data->terms_heading }}</a></li>
+                        @endif
                         <li><a href="privacy.html">Политика конфиденциальности</a></li>
                         <li><a href="disclaimer.html">Отказ от ответственности</a></li>
                     </ul>
