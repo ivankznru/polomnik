@@ -132,23 +132,35 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="javascript:void;" class="nav-link dropdown-toggle">Галерея</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="{{ route('photo_gallery') }}" class="nav-link">Фото галерея</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('video_gallery') }}" class="nav-link">Видеогалерея</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if($global_page_data->photo_gallery_status == 1 || $global_page_data->video_gallery_status == 1)
+                            <li class="nav-item">
+                                <a href="javascript:void;" class="nav-link dropdown-toggle">Галереи</a>
+                                <ul class="dropdown-menu">
+
+                                    @if($global_page_data->photo_gallery_status == 1)
+                                        <li class="nav-item">
+                                            <a href="{{ route('photo_gallery') }}" class="nav-link">{{ $global_page_data->photo_gallery_heading }}</a>
+                                        </li>
+                                    @endif
+
+                                    @if($global_page_data->video_gallery_status == 1)
+                                        <li class="nav-item">
+                                            <a href="{{ route('video_gallery') }}" class="nav-link">{{ $global_page_data->video_gallery_heading }}</a>
+                                        </li>
+                                    @endif
+
+                                </ul>
+                            </li>
+                        @endif
+
                         <li class="nav-item">
                             <a href="{{ route('blog') }}" class="nav-link">Блог</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link">Контакты</a>
-                        </li>
+                        @if($global_page_data->contact_status == 1)
+                            <li class="nav-item">
+                                <a href="{{ route('contact') }}" class="nav-link">{{ $global_page_data->contact_heading }}</a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </nav>
@@ -167,11 +179,18 @@
                     <h2 class="heading">Ссылки сайта</h2>
                     <ul class="useful-links">
                         <li><a href="rooms.html">Размещение</a></li>
-                        <li><a href="{{ route('photo_gallery') }}">Фото галерея</a></li>
-                        <li><a href="{{ route('video_gallery') }}">Видио галерея</a></li>
+                        @if($global_page_data->photo_gallery_status == 1)
+                            <li><a href="{{ route('photo_gallery') }}">{{ $global_page_data->photo_gallery_heading }}</a></li>
+                        @endif
+
+                        @if($global_page_data->video_gallery_status == 1)
+                            <li><a href="{{ route('video_gallery') }}">{{ $global_page_data->video_gallery_heading }}</a></li>
+                        @endif
                         <li><a href="{{ route('blog') }}">Блог</a></li>
                         <li><a href="{{ route('faq') }}">Часто задаваемые вопросы</a></li>
-                        <li><a href="contact.html">Контакты</a></li>
+                        @if($global_page_data->contact_status == 1)
+                            <li><a href="{{ route('contact') }}">{{ $global_page_data->contact_heading }}</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
