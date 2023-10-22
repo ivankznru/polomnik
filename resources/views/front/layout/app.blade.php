@@ -39,10 +39,18 @@
             </div>
             <div class="col-md-6 right-side">
                 <ul class="right">
-                    <li class="menu"><a href="cart.html">Корзина</a></li>
-                    <li class="menu"><a href="checkout.html">Оформление</a></li>
-                    <li class="menu"><a href="signup.html">Зарегистрироваться</a></li>
-                    <li class="menu"><a href="login.html">Логин</a></li>
+                    @if($global_page_data->cart_status == 1)
+                        <li class="menu"><a href="cart.html">{{ $global_page_data->cart_heading }}</a></li>
+                    @endif
+                    @if($global_page_data->checkout_status == 1)
+                        <li class="menu"><a href="checkout.html">{{ $global_page_data->checkout_heading }}</a></li>
+                    @endif
+                    @if($global_page_data->signup_status == 1)
+                        <li class="menu"><a href="signup.html">{{ $global_page_data->signup_heading }}</a></li>
+                    @endif
+                    @if($global_page_data->signin_status == 1)
+                        <li class="menu"><a href="login.html">{{ $global_page_data->signin_heading }}</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
