@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Admin\AdminRoomController;
 use App\Http\Controllers\Admin\AdminSlideController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminVideoController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\PrivacyController;
+use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Front\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -150,3 +152,14 @@ Route::post('/admin/amenity/store', [AdminAmenityController::class, 'store'])->n
 Route::get('/admin/amenity/edit/{id}', [AdminAmenityController::class, 'edit'])->name('admin_amenity_edit')->middleware('admin:admin');
 Route::post('/admin/amenity/update/{id}', [AdminAmenityController::class, 'update'])->name('admin_amenity_update')->middleware('admin:admin');
 Route::get('/admin/amenity/delete/{id}', [AdminAmenityController::class, 'delete'])->name('admin_amenity_delete')->middleware('admin:admin');
+
+Route::get('/admin/room/view', [AdminRoomController::class, 'index'])->name('admin_room_view')->middleware('admin:admin');
+Route::get('/admin/room/add', [AdminRoomController::class, 'add'])->name('admin_room_add')->middleware('admin:admin');
+Route::post('/admin/room/store', [AdminRoomController::class, 'store'])->name('admin_room_store')->middleware('admin:admin');
+Route::get('/admin/room/edit/{id}', [AdminRoomController::class, 'edit'])->name('admin_room_edit')->middleware('admin:admin');
+Route::post('/admin/room/update/{id}', [AdminRoomController::class, 'update'])->name('admin_room_update')->middleware('admin:admin');
+Route::get('/admin/room/delete/{id}', [AdminRoomController::class, 'delete'])->name('admin_room_delete')->middleware('admin:admin');
+
+Route::get('/admin/room/gallery/{id}', [AdminRoomController::class, 'gallery'])->name('admin_room_gallery')->middleware('admin:admin');
+Route::post('/admin/room/gallery/store/{id}', [AdminRoomController::class, 'gallery_store'])->name('admin_room_gallery_store')->middleware('admin:admin');
+Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gallery_delete'])->name('admin_room_gallery_delete')->middleware('admin:admin');

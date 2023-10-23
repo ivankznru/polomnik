@@ -8,14 +8,13 @@
         </div>
 
         <ul class="sidebar-menu">
-            <li class="{{ Request::is('admin/home') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_home') }}" ></i> <span>Панель</span></a></li>
+            <li class="{{ Request::is('admin/home')||Request::is('admin/room/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_home') }}" ></i> <span>Панель</span></a></li>
 
             <li class="nav-item dropdown {{ Request::is('admin/amenity/view')? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-superpowers"></i><span>Комнаты</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/amenity/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_amenity_view') }}"><i class="fa fa-angle-right"></i>Услуги</a></li>
-
-
+                    <li class="{{ Request::is('admin/room/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_room_view') }}"><i class="fa fa-angle-right"></i>Комнаты</a></li>
                 </ul>
             </li>
 
