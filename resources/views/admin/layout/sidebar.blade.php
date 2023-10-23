@@ -30,6 +30,7 @@
             </li>
 
 
+
             <li class="{{ Request::is('admin/slide/*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin_slide_view')}}"><i class="fa fa-hand-o-right"></i> <span>Слайды</span></a></li>
             <li class="{{ Request::is('admin/feature/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_feature_view') }}"><i class="fa fa-hand-o-right"></i> <span>Особенности</span></a></li>
             <li class="{{ Request::is('admin/testimonial/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_testimonial_view') }}"><i class="fa fa-briefcase"></i> <span>Отзывы</span></a></li>
@@ -37,6 +38,16 @@
             <li class="{{ Request::is('admin/photo/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_photo_view') }}" ><i class="fa fa-picture-o"></i> <span>Фото галерея</span></a></li>
             <li class="{{ Request::is('admin/video/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_video_view') }}" ><i class="fa fa-camera"></i> <span>Видео галерея</span></a></li>
             <li class="{{ Request::is('admin/faq/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faq_view') }}" ><i class="fa fa-bolt"></i> <span>Часто задаваемые вопросы</span></a></li>
+
+            <li class="nav-item dropdown {{ Request::is('admin/subscriber/show')||Request::is('admin/subscriber/send-email') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-users"></i><span>Подписчики</span></a>
+                <ul class="dropdown-menu">
+
+                    <li class="{{ Request::is('admin/subscriber/show') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_subscriber_show') }}"><i class="fa fa-angle-right"></i>Все подписчики</a></li>
+                    <li class="{{ Request::is('admin/subscriber/send-email') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_subscriber_send_email') }}"><i class="fa fa-angle-right"></i>Послать эл.письмо</a></li>
+                </ul>
+            </li>
+
         </ul>
     </aside>
 </div>
