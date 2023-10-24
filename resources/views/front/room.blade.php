@@ -24,10 +24,10 @@
                     <div class="text">
                         <h2><a href="{{ route('room_detail',$item->id) }}">{{ $item->name }}</a></h2>
                         <div class="price">
-                            ${{ $item->price }}/night
+                            ₽{{ $item->price }}/ночь
                         </div>
                         <div class="button">
-                            <a href="{{ route('room_detail',$item->id) }}" class="btn btn-primary">See Detail</a>
+                            <a href="{{ route('room_detail',$item->id) }}" class="btn btn-primary">Подробнее</a>
                         </div>
                     </div>
                 </div>

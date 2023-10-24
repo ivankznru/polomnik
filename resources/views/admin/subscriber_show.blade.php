@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('heading', 'Все подписчики')
+@section('heading', 'Все не подтвержденные подписчики')
 
 @section('main_content')
 <div class="section-body">
@@ -14,14 +14,25 @@
                                 <tr>
                                     <th>Номер</th>
                                     <th>Адрес эл.почты</th>
+                                    <th>Действие</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($all_subscribers as $row)
+                                @foreach($all_subscribers as $subscriber)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $row->email }}</td>
+                                    <td>{{ $subscriber->email }}</td>
+                                    <td class="pt_10 pb_10 ">
+                                       <form method="post" action="/admin/subscribers/show">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $subscriber->id }}"/>
+                                            <button class="btn btn-primary" type="submit">
+                                                Подтвердить
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
+
                                 @endforeach
                             </tbody>
                         </table>
