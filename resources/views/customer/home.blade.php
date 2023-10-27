@@ -1,6 +1,6 @@
-@extends('admin.layout.app')
+@extends('customer.layout.app')
 
-@section('heading', 'Dashboard')
+@section('heading', 'Панель')
 
 @section('main_content')
 <div class="row">
@@ -11,10 +11,10 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Всего комнат</h4>
+                    <h4>Выполненные заказы</h4>
                 </div>
                 <div class="card-body">
-                    12
+                   5
                 </div>
             </div>
         </div>
@@ -22,29 +22,14 @@
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
             <div class="card-icon bg-danger">
-                <i class="fa fa-book-open"></i>
+                <i class="fa fa-user"></i>
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Всего заказов</h4>
+                    <h4>Отложенные заказы</h4>
                 </div>
                 <div class="card-body">
-                    122
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-        <div class="card card-statistic-1">
-            <div class="card-icon bg-warning">
-                <i class="fa fa-bullhorn"></i>
-            </div>
-            <div class="card-wrap">
-                <div class="card-header">
-                    <h4>Всего посетителей</h4>
-                </div>
-                <div class="card-body">
-                    45
+                    8
                 </div>
             </div>
         </div>
