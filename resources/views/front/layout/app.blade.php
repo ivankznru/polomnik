@@ -289,7 +289,6 @@
     <i class="fa fa-angle-up"></i>
 </div>
 
-
 @include('front.layout.scripts_footer')
 
 @if(session()->get('error'))

@@ -28,17 +28,17 @@ class SubscriberController extends Controller
             $obj->save();
 
             $verification_link = url('subscriber/verify/'.$request->email.'/'.$token);
-            
+
             // Send email
-            $subject = 'Subscriber Verification';
-            $message = 'Please click on the link below to confirm subscription:<br>';
+            $subject = 'Подтверждение подписки';
+            $message = 'Пожалуйста, нажмите на ссылку ниже, чтобы подтвердить подписку:<br>';
             $message .= '<a href="'.$verification_link.'">';
             $message .= $verification_link;
             $message .= '</a>';
 
             \Mail::to($request->email)->send(new Websitemail($subject,$message));
 
-            return response()->json(['code'=>1,'success_message'=>'Please check your email to confirm subscription']);
+            return response()->json(['code'=>1,'success_message'=>'Пожалуйста, проверьте свою электронную почту, чтобы подтвердить подписку']);
         }
     }
 
@@ -47,12 +47,12 @@ class SubscriberController extends Controller
         $subscriber_data = Subscriber::where('email',$email)->where('token',$token)->first();
 
         if($subscriber_data) {
-            
+
             $subscriber_data->token = '';
             $subscriber_data->status = 1;
             $subscriber_data->update();
 
-            return redirect()->route('home')->with('success', 'Your subscription is verified successfully!');
+            return redirect()->route('home')->with('success', 'Ваша подписка подтвердена успешно!');
 
         } else {
             return redirect()->route('home');

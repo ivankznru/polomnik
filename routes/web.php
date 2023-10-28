@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Customer\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerHomeController;
+use App\Http\Controllers\Customer\CustomerProfileController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
@@ -53,16 +54,11 @@ Route::post('/subscriber/send-email', [SubscriberController::class, 'send_email'
 Route::get('/subscriber/verify/{email}/{token}', [SubscriberController::class, 'verify'])->name('subscriber_verify');
 Route::get('/room', [RoomController::class, 'index'])->name('room');
 Route::get('/room/{id}', [RoomController::class, 'single_room'])->name('room_detail');
-
 Route::get('/prayorder/trebi', [PrayorderController::class, 'indexTrebi'])->name('indexTrebi');
 Route::post('/prayorder/trebi', [PrayorderController::class, 'store'])->name('store');
 
 Route::get('/prayorder/muslimpray', [PrayorderMuslimController::class, 'indexMuslimPrays'])->name('indexMuslimPrays');
 Route::post('/prayorder/muslimpray', [PrayorderMuslimController::class, 'store'])->name('store');
-
-
-
-
 
 /* Customer */
 Route::get('/login', [CustomerAuthController::class, 'login'])->name('customer_login');
@@ -202,9 +198,7 @@ Route::get('/admin/subscriber/show', [AdminSubscriberController::class, 'show'])
 Route::get('/admin/subscriber/send-email', [AdminSubscriberController::class, 'send_email'])->name('admin_subscriber_send_email');
 Route::post('/admin/subscriber/send-email-submit', [AdminSubscriberController::class, 'send_email_submit'])->name('admin_subscriber_send_email_submit');
 Route::get('/admin/subscriber/showConfirmed', [AdminSubscriberController::class, 'showConfirmed'])->name('admin_subscriber_showConfirmed');
-Route::post('/admin/subscribers/show', [AdminSubscriberController::class, 'update'])->name('update')->middleware('admin:admin');
-Route::post('/admin/subscriber/showConfirmed', [AdminSubscriberController::class, 'updateConfirmed'])->name('updateConfirmed');
-
+Route::post('/admin/subscribers/show', [AdminSubscriberController::class, 'update'])->name('update')->middleware('admin:admin');Route::post('/admin/subscriber/showConfirmed', [AdminSubscriberController::class, 'updateConfirmed'])->name('updateConfirmed');
 
 Route::get('/admin/amenity/view', [AdminAmenityController::class, 'index'])->name('admin_amenity_view');
 Route::get('/admin/amenity/add', [AdminAmenityController::class, 'add'])->name('admin_amenity_add');
@@ -223,7 +217,6 @@ Route::get('/admin/room/delete/{id}', [AdminRoomController::class, 'delete'])->n
 Route::get('/admin/room/gallery/{id}', [AdminRoomController::class, 'gallery'])->name('admin_room_gallery');
 Route::post('/admin/room/gallery/store/{id}', [AdminRoomController::class, 'gallery_store'])->name('admin_room_gallery_store');
 Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gallery_delete'])->name('admin_room_gallery_delete');
-
 
     /* Admin для треб */
 
@@ -262,22 +255,20 @@ Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gall
     Route::get('/admin/prayordermuslim/delete/{id}', [AdminPrayorderMuslimController::class, 'delete'])->name('admin_prayordermuslim_delete')->middleware('admin:admin');
 
 
-    Route::get('/admin/muslimpray/view', [AdminMuslimprayController::class, 'index'])->name('admin_muslimpray_view');
-    Route::get('/admin/muslimpray/add', [AdminMuslimprayController::class, 'add'])->name('admin_muslimpray_add');
-    Route::post('/admin/muslimpray/store', [AdminMuslimprayController::class, 'store'])->name('admin_muslimpray_store');
-    Route::get('/admin/muslimpray/edit/{id}', [AdminMuslimprayController::class, 'edit'])->name('admin_muslimpray_edit');
-    Route::post('/admin/muslimpray/update/{id}', [AdminMuslimprayController::class, 'update'])->name('admin_muslimpray_update');
-    Route::get('/admin/muslimpray/delete/{id}', [AdminMuslimprayController::class, 'delete'])->name('admin_muslimpray_delete');
+    Route::get('/admin/muslimpray/view', [AdminMuslimprayController::class, 'index'])->name('admin_muslimpray_view')->middleware('admin:admin');
+    Route::get('/admin/muslimpray/add', [AdminMuslimprayController::class, 'add'])->name('admin_muslimpray_add')->middleware('admin:admin');
+    Route::post('/admin/muslimpray/store', [AdminMuslimprayController::class, 'store'])->name('admin_muslimpray_store')->middleware('admin:admin');
+    Route::get('/admin/muslimpray/edit/{id}', [AdminMuslimprayController::class, 'edit'])->name('admin_muslimpray_edit')->middleware('admin:admin');
+    Route::post('/admin/muslimpray/update/{id}', [AdminMuslimprayController::class, 'update'])->name('admin_muslimpray_update')->middleware('admin:admin');
+    Route::get('/admin/muslimpray/delete/{id}', [AdminMuslimprayController::class, 'delete'])->name('admin_muslimpray_delete')->middleware('admin:admin');
 
-    Route::get('/admin/mosque/view', [AdminMosqueController::class, 'index'])->name('admin_mosque_view');
-    Route::get('/admin/mosque/add', [AdminMosqueController::class, 'add'])->name('admin_mosque_add');
-    Route::post('/admin/mosque/store', [AdminMosqueController::class, 'store'])->name('admin_mosque_store');
-    Route::get('/admin/mosque/edit/{id}', [AdminMosqueController::class, 'edit'])->name('admin_mosque_edit');
-    Route::post('/admin/mosque/update/{id}', [AdminMosqueController::class, 'update'])->name('admin_mosque_update');
-    Route::get('/admin/mosque/delete/{id}', [AdminMosqueController::class, 'delete'])->name('admin_mosque_delete');
+    Route::get('/admin/mosque/view', [AdminMosqueController::class, 'index'])->name('admin_mosque_view')->middleware('admin:admin');
+    Route::get('/admin/mosque/add', [AdminMosqueController::class, 'add'])->name('admin_mosque_add')->middleware('admin:admin');
+    Route::post('/admin/mosque/store', [AdminMosqueController::class, 'store'])->name('admin_mosque_store')->middleware('admin:admin');
+    Route::get('/admin/mosque/edit/{id}', [AdminMosqueController::class, 'edit'])->name('admin_mosque_edit')->middleware('admin:admin');
+    Route::post('/admin/mosque/update/{id}', [AdminMosqueController::class, 'update'])->name('admin_mosque_update')->middleware('admin:admin');
+    Route::get('/admin/mosque/delete/{id}', [AdminMosqueController::class, 'delete'])->name('admin_mosque_delete')->middleware('admin:admin');
     /* окончание Admin для мусульманских молитв  */
-
-
 
 
 });
