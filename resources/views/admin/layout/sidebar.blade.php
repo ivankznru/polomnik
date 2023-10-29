@@ -57,6 +57,7 @@
                     <li class="{{ Request::is('admin/subscriber/send-email') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_subscriber_send_email') }}"><i class="fa fa-angle-right"></i>Послать эл.письмо</a></li>
                 </ul>
             </li>
+
             <li class="{{ Request::is('admin/prayorder/view')||Request::is('admin/church/view')||Request::is('admin/treb/view') ? 'active' : '' }}"><a href="#" class="nav-link has-dropdown"><i class="fa fa-arrows"></i><span>Требы</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/prayorder/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_prayorder_view') }}"><i class="fa fa-angle-right"></i>Заказанные требы</a></li>

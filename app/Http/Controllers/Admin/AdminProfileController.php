@@ -8,7 +8,6 @@ use App\Models\Admin;
 use Hash;
 use Auth;
 
-
 class AdminProfileController extends Controller
 {
     public function index()
@@ -48,7 +47,7 @@ class AdminProfileController extends Controller
             $admin_data->photo = $final_name;
         }
 
-
+        
         $admin_data->name = $request->name;
         $admin_data->email = $request->email;
         $admin_data->update();

@@ -22,6 +22,7 @@ use App\Http\Controllers\Customer\CustomerHomeController;
 use App\Http\Controllers\Customer\CustomerProfileController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Front\BookingController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\HomeController;
@@ -54,11 +55,20 @@ Route::post('/subscriber/send-email', [SubscriberController::class, 'send_email'
 Route::get('/subscriber/verify/{email}/{token}', [SubscriberController::class, 'verify'])->name('subscriber_verify');
 Route::get('/room', [RoomController::class, 'index'])->name('room');
 Route::get('/room/{id}', [RoomController::class, 'single_room'])->name('room_detail');
+Route::post('/booking/submit', [BookingController::class, 'cart_submit'])->name('cart_submit');
+Route::get('/cart', [BookingController::class, 'cart_view'])->name('cart');
+Route::get('/cart/delete/{id}', [BookingController::class, 'cart_delete'])->name('cart_delete');
+Route::get('/checkout', [BookingController::class, 'checkout'])->name('checkout');
+Route::post('/payment', [BookingController::class, 'payment'])->name('payment');
+
 Route::get('/prayorder/trebi', [PrayorderController::class, 'indexTrebi'])->name('indexTrebi');
 Route::post('/prayorder/trebi', [PrayorderController::class, 'store'])->name('store');
 
 Route::get('/prayorder/muslimpray', [PrayorderMuslimController::class, 'indexMuslimPrays'])->name('indexMuslimPrays');
 Route::post('/prayorder/muslimpray', [PrayorderMuslimController::class, 'store'])->name('store');
+
+
+
 
 /* Customer */
 Route::get('/login', [CustomerAuthController::class, 'login'])->name('customer_login');
@@ -198,7 +208,9 @@ Route::get('/admin/subscriber/show', [AdminSubscriberController::class, 'show'])
 Route::get('/admin/subscriber/send-email', [AdminSubscriberController::class, 'send_email'])->name('admin_subscriber_send_email');
 Route::post('/admin/subscriber/send-email-submit', [AdminSubscriberController::class, 'send_email_submit'])->name('admin_subscriber_send_email_submit');
 Route::get('/admin/subscriber/showConfirmed', [AdminSubscriberController::class, 'showConfirmed'])->name('admin_subscriber_showConfirmed');
-Route::post('/admin/subscribers/show', [AdminSubscriberController::class, 'update'])->name('update')->middleware('admin:admin');Route::post('/admin/subscriber/showConfirmed', [AdminSubscriberController::class, 'updateConfirmed'])->name('updateConfirmed');
+Route::post('/admin/subscribers/show', [AdminSubscriberController::class, 'update'])->name('update');
+Route::post('/admin/subscriber/showConfirmed', [AdminSubscriberController::class, 'updateConfirmed'])->name('updateConfirmed');
+
 
 Route::get('/admin/amenity/view', [AdminAmenityController::class, 'index'])->name('admin_amenity_view');
 Route::get('/admin/amenity/add', [AdminAmenityController::class, 'add'])->name('admin_amenity_add');
@@ -269,6 +281,8 @@ Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gall
     Route::post('/admin/mosque/update/{id}', [AdminMosqueController::class, 'update'])->name('admin_mosque_update')->middleware('admin:admin');
     Route::get('/admin/mosque/delete/{id}', [AdminMosqueController::class, 'delete'])->name('admin_mosque_delete')->middleware('admin:admin');
     /* окончание Admin для мусульманских молитв  */
+
+
 
 
 });
