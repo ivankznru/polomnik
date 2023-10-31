@@ -22,6 +22,31 @@
         </div>
     </div>
 
+
+
+
+    <div class="home-feature">
+        <div class="container">
+            <div class="row">
+
+                @foreach($feature_all as $item)
+                    <div class="col-md-3">
+                        <div class="inner">
+                            <div class="icon"><i class="{{ $item->icon }}"></i></div>
+                            <div class="text">
+                                <h2>{{ $item->heading }}</h2>
+                                <p>
+                                    {!! $item->text !!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
     <div class="search-section">
         <div class="container">
             <form action="{{ route('cart_submit') }}" method="post">
@@ -62,36 +87,8 @@
         </div>
     </div>
 
-
-    <div class="home-feature">
-        <div class="container">
-            <div class="row">
-
-                @foreach($feature_all as $item)
-                    <div class="col-md-3">
-                        <div class="inner">
-                            <div class="icon"><i class="{{ $item->icon }}"></i></div>
-                            <div class="text">
-                                <h2>{{ $item->heading }}</h2>
-                                <p>
-                                    {!! $item->text !!}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-
     <div class="home-rooms">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="main-header">Номера и люксы</h2>
-                </div>
-            </div>
             <div class="row">
                 @foreach($room_all as $item)
 

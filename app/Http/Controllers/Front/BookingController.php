@@ -72,6 +72,18 @@ class BookingController extends Controller
         return redirect()->back()->with('success', 'Room is added to the cart successfully.');
     }
 
+    public function cartbook_submit(Request $request)
+    {
+        $request->validate([
+            'book_id' => 'required',
+        ]);
+
+        session()->push('cart_book_id',$request->book_id);
+
+
+        return redirect()->back()->with('success', 'Книга добавлена в корзину успешно.');
+    }
+
     public function cart_view()
     {
         return view('front.cart');
@@ -136,10 +148,38 @@ class BookingController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Cart item is deleted.');
+        return redirect()->back()->with('success', 'Комната удалена.');
 
     }
 
+    public function cartbook_delete($id)
+    {
+        $arr_cart_book_id = array();
+        $i=0;
+        foreach(session()->get('cart_book_id') as $value) {
+            $arr_cart_book_id[$i] = $value;
+            $i++;
+        }
+
+
+        session()->forget('cart_book_id');
+
+        for($i=0;$i<count($arr_cart_book_id);$i++)
+        {
+            if($arr_cart_book_id[$i] == $id)
+            {
+                continue;
+            }
+            else
+            {
+                session()->push('cart_book_id',$arr_cart_book_id[$i]);
+
+            }
+        }
+
+        return redirect()->back()->with('success', 'Книга удалена.');
+
+    }
 
     public function checkout()
     {

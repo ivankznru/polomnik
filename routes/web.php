@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAmenityController;
+use App\Http\Controllers\Admin\AdminAuthorController;
+use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminChurchController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
+use App\Http\Controllers\Admin\AdminGenreController;
+use App\Http\Controllers\Admin\AdminLangController;
 use App\Http\Controllers\Admin\AdminMosqueController;
 use App\Http\Controllers\Admin\AdminMuslimprayController;
 use App\Http\Controllers\Admin\AdminPageController;
@@ -11,6 +15,8 @@ use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPrayorderController;
 use App\Http\Controllers\Admin\AdminPrayorderMuslimController;
+use App\Http\Controllers\Admin\AdminPublisherController;
+use App\Http\Controllers\Admin\AdminReligionController;
 use App\Http\Controllers\Admin\AdminRoomController;
 use App\Http\Controllers\Admin\AdminSlideController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
@@ -20,11 +26,15 @@ use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Customer\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerHomeController;
 use App\Http\Controllers\Customer\CustomerProfileController;
+
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
+
+use App\Http\Controllers\Front\BookController;
 use App\Http\Controllers\Front\BookingController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\FaqController;
+
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\PrayorderController;
@@ -61,12 +71,24 @@ Route::get('/cart/delete/{id}', [BookingController::class, 'cart_delete'])->name
 Route::get('/checkout', [BookingController::class, 'checkout'])->name('checkout');
 Route::post('/payment', [BookingController::class, 'payment'])->name('payment');
 
+Route::post('/booking/booksubmit', [BookingController::class, 'cartbook_submit'])->name('cartbook_submit');
+Route::get('/cartbook/delete/{id}', [BookingController::class, 'cartbook_delete'])->name('cartbook_delete');
+
+
 Route::get('/prayorder/trebi', [PrayorderController::class, 'indexTrebi'])->name('indexTrebi');
 Route::post('/prayorder/trebi', [PrayorderController::class, 'store'])->name('store');
 
 Route::get('/prayorder/muslimpray', [PrayorderMuslimController::class, 'indexMuslimPrays'])->name('indexMuslimPrays');
 Route::post('/prayorder/muslimpray', [PrayorderMuslimController::class, 'store'])->name('store');
 
+/* Front для книг */
+Route::get('/book', [BookController::class, 'index'])->name('index-book');
+Route::get('/book/{id}', [BookController::class, 'single_book'])->name('book_detail');
+/* окончание Front для книг */
+
+/* Front для отзывов */
+Route::post('/review-store',[BookController::class, 'reviewstore'])->name('review.store');
+/* окончание Front для отзывов */
 
 
 
@@ -282,6 +304,51 @@ Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gall
     Route::get('/admin/mosque/delete/{id}', [AdminMosqueController::class, 'delete'])->name('admin_mosque_delete')->middleware('admin:admin');
     /* окончание Admin для мусульманских молитв  */
 
+    /* Admin для книг */
+
+    Route::get('/admin/book/view', [AdminBookController::class, 'index'])->name('admin_book_view')->middleware('admin:admin');
+    Route::get('/admin/book/add', [AdminBookController::class, 'add'])->name('admin_book_add')->middleware('admin:admin');
+    Route::post('/admin/book/store', [AdminBookController::class, 'store'])->name('admin_book_store')->middleware('admin:admin');
+    Route::get('/admin/book/edit/{id}', [AdminBookController::class, 'edit'])->name('admin_book_edit')->middleware('admin:admin');
+    Route::post('/admin/book/update/{id}', [AdminBookController::class, 'update'])->name('admin_book_update')->middleware('admin:admin');
+    Route::get('/admin/book/delete/{id}', [AdminBookController::class, 'delete'])->name('admin_book_delete')->middleware('admin:admin');
+
+    Route::get('/admin/author/view', [AdminAuthorController::class, 'index'])->name('admin_author_view')->middleware('admin:admin');
+    Route::get('/admin/author/add', [AdminAuthorController::class, 'add'])->name('admin_author_add')->middleware('admin:admin');
+    Route::post('/admin/author/store', [AdminAuthorController::class, 'store'])->name('admin_author_store')->middleware('admin:admin');
+    Route::get('/admin/author/edit/{id}', [AdminAuthorController::class, 'edit'])->name('admin_author_edit')->middleware('admin:admin');
+    Route::post('/admin/author/update/{id}', [AdminAuthorController::class, 'update'])->name('admin_author_update')->middleware('admin:admin');
+    Route::get('/admin/author/delete/{id}', [AdminAuthorController::class, 'delete'])->name('admin_author_delete')->middleware('admin:admin');
+
+    Route::get('/admin/religion/view', [AdminReligionController::class, 'index'])->name('admin_religion_view')->middleware('admin:admin');
+    Route::get('/admin/religion/add', [AdminReligionController::class, 'add'])->name('admin_religion_add')->middleware('admin:admin');
+    Route::post('/admin/religion/store', [AdminReligionController::class, 'store'])->name('admin_religion_store')->middleware('admin:admin');
+    Route::get('/admin/religion/edit/{id}', [AdminReligionController::class, 'edit'])->name('admin_religion_edit')->middleware('admin:admin');
+    Route::post('/admin/religion/update/{id}', [AdminReligionController::class, 'update'])->name('admin_religion_update')->middleware('admin:admin');
+    Route::get('/admin/religion/delete/{id}', [AdminReligionController::class, 'delete'])->name('admin_religion_delete')->middleware('admin:admin');
+
+    Route::get('/admin/lang/view', [AdminLangController::class, 'index'])->name('admin_lang_view')->middleware('admin:admin');
+    Route::get('/admin/lang/add', [AdminLangController::class, 'add'])->name('admin_lang_add')->middleware('admin:admin');
+    Route::post('/admin/lang/store', [AdminLangController::class, 'store'])->name('admin_lang_store')->middleware('admin:admin');
+    Route::get('/admin/lang/edit/{id}', [AdminLangController::class, 'edit'])->name('admin_lang_edit')->middleware('admin:admin');
+    Route::post('/admin/lang/update/{id}', [AdminLangController::class, 'update'])->name('admin_lang_update')->middleware('admin:admin');
+    Route::get('/admin/lang/delete/{id}', [AdminLangController::class, 'delete'])->name('admin_lang_delete')->middleware('admin:admin');
+
+    Route::get('/admin/publisher/view', [AdminPublisherController::class, 'index'])->name('admin_publisher_view')->middleware('admin:admin');
+    Route::get('/admin/publisher/add', [AdminPublisherController::class, 'add'])->name('admin_publisher_add')->middleware('admin:admin');
+    Route::post('/admin/publisher/store', [AdminPublisherController::class, 'store'])->name('admin_publisher_store')->middleware('admin:admin');
+    Route::get('/admin/publisher/edit/{id}', [AdminPublisherController::class, 'edit'])->name('admin_publisher_edit')->middleware('admin:admin');
+    Route::post('/admin/publisher/update/{id}', [AdminPublisherController::class, 'update'])->name('admin_publisher_update')->middleware('admin:admin');
+    Route::get('/admin/publisher/delete/{id}', [AdminPublisherController::class, 'delete'])->name('admin_publisher_delete')->middleware('admin:admin');
+
+    Route::get('/admin/genre/view', [AdminGenreController::class, 'index'])->name('admin_genre_view')->middleware('admin:admin');
+    Route::get('/admin/genre/add', [AdminGenreController::class, 'add'])->name('admin_genre_add')->middleware('admin:admin');
+    Route::post('/admin/genre/store', [AdminGenreController::class, 'store'])->name('admin_genre_store')->middleware('admin:admin');
+    Route::get('/admin/genre/edit/{id}', [AdminGenreController::class, 'edit'])->name('admin_genre_edit')->middleware('admin:admin');
+    Route::post('/admin/genre/update/{id}', [AdminGenreController::class, 'update'])->name('admin_genre_update')->middleware('admin:admin');
+    Route::get('/admin/genre/delete/{id}', [AdminGenreController::class, 'delete'])->name('admin_genre_delete')->middleware('admin:admin');
+
+    /* окончание Admin для книг */
 
 
 
