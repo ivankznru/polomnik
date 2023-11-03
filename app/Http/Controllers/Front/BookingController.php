@@ -200,7 +200,7 @@ class BookingController extends Controller
             return redirect()->back()->with('error', 'You must have to login in order to checkout');
         }
 
-        if(!session()->has('cart_room_id')) {
+        if(!session()->has('cart_room_id') and !session()->has('cart_book_id')) {
             return redirect()->back()->with('error', 'There is no item in the cart');
         }
 
