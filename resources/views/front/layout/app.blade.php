@@ -92,7 +92,7 @@
                             <a href="{{route('home')}}" class="nav-link">Главная страница</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Экскурсии</a>
+                            <a href="{{route('index-excursion')}}" class="nav-link">Экскурсии</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('index-book')}}" class="nav-link">Литература</a>

@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\AdminAmenityController;
 use App\Http\Controllers\Admin\AdminAuthorController;
 use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminChurchController;
+use App\Http\Controllers\Admin\AdminDiscountController;
+use App\Http\Controllers\Admin\AdminDurationController;
+use App\Http\Controllers\Admin\AdminExcursionController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminGenreController;
@@ -12,6 +15,7 @@ use App\Http\Controllers\Admin\AdminMosqueController;
 use App\Http\Controllers\Admin\AdminMuslimprayController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPhotoController;
+use App\Http\Controllers\Admin\AdminPlacevisitController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPrayorderController;
 use App\Http\Controllers\Admin\AdminPrayorderMuslimController;
@@ -23,6 +27,7 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminTrebController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
+use App\Http\Controllers\Admin\AdminWhatdayController;
 use App\Http\Controllers\Customer\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerHomeController;
 use App\Http\Controllers\Customer\CustomerProfileController;
@@ -31,6 +36,7 @@ use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\BookController;
 use App\Http\Controllers\Front\BookingController;
 use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\ExcursionController;
 use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PhotoController;
@@ -88,6 +94,13 @@ Route::get('/book/{id}', [BookController::class, 'single_book'])->name('book_det
 /* Front для отзывов */
 Route::post('/review-store',[BookController::class, 'reviewstore'])->name('review.store');
 /* окончание Front для отзывов */
+
+/* Front для экскурсий */
+Route::get('/excursion', [ExcursionController::class, 'index'])->name('index-excursion');
+Route::get('/excursion/{id}', [ExcursionController::class, 'single_book'])->name('excursion_detail');
+Route::post('/reviewexcur-store',[ExcursionController::class, 'reviewexcurstore'])->name('reviewexcur.store');
+/* окончание Front для экскурсий */
+
 
 
 /* Customer */
@@ -348,5 +361,42 @@ Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gall
     /* окончание Admin для книг */
 
 
+    /* Admin для экскурсий */
+    Route::get('/admin/excursion/view', [AdminExcursionController::class, 'index'])->name('admin_excursion_view')->middleware('admin:admin');
+    Route::get('/admin/excursion/add', [AdminExcursionController::class, 'add'])->name('admin_excursion_add')->middleware('admin:admin');
+    Route::post('/admin/excursion/store', [AdminExcursionController::class, 'store'])->name('admin_excursion_store')->middleware('admin:admin');
+    Route::get('/admin/excursion/edit/{id}', [AdminExcursionController::class, 'edit'])->name('admin_excursion_edit')->middleware('admin:admin');
+    Route::post('/admin/excursion/update/{id}', [AdminExcursionController::class, 'update'])->name('admin_excursion_update')->middleware('admin:admin');
+    Route::get('/admin/excursion/delete/{id}', [AdminExcursionController::class, 'delete'])->name('admin_excursion_delete')->middleware('admin:admin');
+
+    Route::get('/admin/discount/view', [AdminDiscountController::class, 'index'])->name('admin_discount_view')->middleware('admin:admin');
+    Route::get('/admin/discount/add', [AdminDiscountController::class, 'add'])->name('admin_discount_add')->middleware('admin:admin');
+    Route::post('/admin/discount/store', [AdminDiscountController::class, 'store'])->name('admin_discount_store')->middleware('admin:admin');
+    Route::get('/admin/discount/edit/{id}', [AdminDiscountController::class, 'edit'])->name('admin_discount_edit')->middleware('admin:admin');
+    Route::post('/admin/discount/update/{id}', [AdminDiscountController::class, 'update'])->name('admin_discount_update')->middleware('admin:admin');
+    Route::get('/admin/discount/delete/{id}', [AdminDiscountController::class, 'delete'])->name('admin_discount_delete')->middleware('admin:admin');
+
+    Route::get('/admin/duration/view', [AdminDurationController::class, 'index'])->name('admin_duration_view')->middleware('admin:admin');
+    Route::get('/admin/duration/add', [AdminDurationController::class, 'add'])->name('admin_duration_add')->middleware('admin:admin');
+    Route::post('/admin/duration/store', [AdminDurationController::class, 'store'])->name('admin_duration_store')->middleware('admin:admin');
+    Route::get('/admin/duration/edit/{id}', [AdminDurationController::class, 'edit'])->name('admin_duration_edit')->middleware('admin:admin');
+    Route::post('/admin/duration/update/{id}', [AdminDurationController::class, 'update'])->name('admin_duration_update')->middleware('admin:admin');
+    Route::get('/admin/duration/delete/{id}', [AdminDurationController::class, 'delete'])->name('admin_duration_delete')->middleware('admin:admin');
+
+    Route::get('/admin/whatday/view', [AdminWhatdayController::class, 'index'])->name('admin_whatday_view')->middleware('admin:admin');
+    Route::get('/admin/whatday/add', [AdminWhatdayController::class, 'add'])->name('admin_whatday_add')->middleware('admin:admin');
+    Route::post('/admin/whatday/store', [AdminWhatdayController::class, 'store'])->name('admin_whatday_store')->middleware('admin:admin');
+    Route::get('/admin/whatday/edit/{id}', [AdminWhatdayController::class, 'edit'])->name('admin_whatday_edit')->middleware('admin:admin');
+    Route::post('/admin/whatday/update/{id}', [AdminWhatdayController::class, 'update'])->name('admin_whatday_update')->middleware('admin:admin');
+    Route::get('/admin/whatday/delete/{id}', [AdminWhatdayController::class, 'delete'])->name('admin_whatday_delete')->middleware('admin:admin');
+
+    Route::get('/admin/placevisit/view', [AdminPlacevisitController::class, 'index'])->name('admin_placevisit_view')->middleware('admin:admin');
+    Route::get('/admin/placevisit/add', [AdminPlacevisitController::class, 'add'])->name('admin_placevisit_add')->middleware('admin:admin');
+    Route::post('/admin/placevisit/store', [AdminPlacevisitController::class, 'store'])->name('admin_placevisit_store')->middleware('admin:admin');
+    Route::get('/admin/placevisit/edit/{id}', [AdminPlacevisitController::class, 'edit'])->name('admin_placevisit_edit')->middleware('admin:admin');
+    Route::post('/admin/placevisit/update/{id}', [AdminPlacevisitController::class, 'update'])->name('admin_placevisit_update')->middleware('admin:admin');
+    Route::get('/admin/placevisit/delete/{id}', [AdminPlacevisitController::class, 'delete'])->name('admin_placevisit_delete')->middleware('admin:admin');
+
+    /* окончание Admin для экскурсий  */
 
 });

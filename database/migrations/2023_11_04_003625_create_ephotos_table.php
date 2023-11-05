@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
     /**
      * Run the migrations.
      *
@@ -14,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('booked_rooms', function (Blueprint $table) {
+        Schema::create('ephotos', function (Blueprint $table) {
             $table->id();
-            $table->text('booking_date');
-            $table->text('order_no');
-            $table->integer('room_id');
+            $table->text('photo');
+            $table->text('caption')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booked_rooms');
+        Schema::dropIfExists('ephotos');
     }
 };

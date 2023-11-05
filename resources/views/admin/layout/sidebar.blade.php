@@ -84,6 +84,15 @@
                     <li class="{{ Request::is('admin/genre/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_genre_view') }}"><i class="fa fa-angle-right"></i>Жанр</a></li>
                 </ul>
             </li>
+            <li class="{{ Request::is('admin/excursion/view')||Request::is('admin/discount/view')||Request::is('admin/duration/view')||Request::is('admin/whatday/view')||Request::is('admin/placevisit/view')? 'active' : '' }}"><a href="#" class="nav-link has-dropdown"><i class="fa fa-arrows"></i><span>Экскурсии</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/excursion/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_excursion_view') }}"><i class="fa fa-angle-right"></i>Экскурсия</a></li>
+                    <li class="{{ Request::is('admin/discount/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_discount_view') }}"><i class="fa fa-angle-right"></i>Скидка</a></li>
+                    <li class="{{ Request::is('admin/duration/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_duration_view') }}"><i class="fa fa-angle-right"></i>Начальный час экскурсии</a></li>
+                    <li class="{{ Request::is('admin/whatday/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_whatday_view') }}"><i class="fa fa-angle-right"></i>День экскурсии</a></li>
+                    <li class="{{ Request::is('admin/placevisit/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_placevisit_view') }}"><i class="fa fa-angle-right"></i>Место посещения</a></li>
+                </ul>
+            </li>
         </ul>
     </aside>
 </div>
