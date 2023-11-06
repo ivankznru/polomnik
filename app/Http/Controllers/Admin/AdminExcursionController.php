@@ -58,7 +58,6 @@ class AdminExcursionController extends Controller
         $obj->durationExcursion = $request->durationExcursion;
         $obj->guide = $request->guide;
         $obj->transport = $request->transport;
-        $obj->user_id = 1;
         $obj->save();
 
         if ($request->has('arr_discounts')) {
@@ -146,7 +145,7 @@ class AdminExcursionController extends Controller
         $obj->durationExcursion = $request->durationExcursion;
         $obj->guide = $request->guide;
         $obj->transport = $request->transport;
-        $obj->user_id = 1;
+
 
         $obj->update();
 

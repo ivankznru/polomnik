@@ -199,12 +199,12 @@
                         <div style="padding-top:8px;"></div>
                         <div class=" review-content">
                             <p class="mt-1 text-warning" style="margin-bottom:1px;">
-                                {{ $avgStar }}
+                                {{round($avgStar, 2)}}
                                 @for($i=1; $i<=$avgStar1; $i++)
                                     <span><i class="fa fa-star text-warning"></i></span>
                                 @endfor
                             </p>
-                            <div class="text-primary" style="font-style: italic; margin-bottom:10px;"  >
+                            <div class="text-danger" style="font-style: italic; margin-bottom:10px;"  >
                                 {{ $reviewCount }}  {{trans_choice('отзыв|отзыва|отзывов',$reviewCount)}}
                             </div>
                         </div>
@@ -289,7 +289,7 @@
 
     <div class="widget" >
         <div class="container" style="width: 700px">
-            <div class="card  " style="background-color: transparent;border-color: white;box-shadow: 0 0 20px 0 #ddd;" >
+            <div class="card  " style="background-color: transparent;border-color: pink;box-shadow: 0 0 20px 0 #ddd;" >
             <h2>Забронируйте эту экскурсию</h2>
             <form action="{{ route('cartexcur_submit') }}" method="post">
                 @csrf
@@ -329,7 +329,7 @@
                     <label for="" style="margin-bottom:5px">Дети до 5 лет</label>
                     <input type="number" name="kids" class="form-control" min="0" max="30" placeholder="Дети до 14 лет">
                 </div>
-                <button type="submit" class="btn btn-primary">Добавить в корзину</button>
+                <button type="submit" class="btn btn-danger">Добавить в корзину</button>
             </form>
             </div>
           </div>
@@ -413,7 +413,7 @@
                         </div>
                     </div>
                     <div class="mt-3 ">
-                        <button class="btn py-2 px-3 btn-primary">Подтведить
+                        <button class="btn py-2 px-3 btn-danger">Подтведить
                         </button>
                     </div>
                 </form>

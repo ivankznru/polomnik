@@ -61,7 +61,7 @@ class BookingController extends Controller
         }
 
         if($cnt == 0) {
-            return redirect()->back()->with('error', 'Maximum number of this room is already booked');
+            return redirect()->back()->with('error', 'Максимальное количество комнат в этом номере уже забронировано');
         }
 
         session()->push('cart_room_id',$request->room_id);
@@ -70,7 +70,7 @@ class BookingController extends Controller
         session()->push('cart_adult',$request->adult);
         session()->push('cart_children',$request->children);
 
-        return redirect()->back()->with('success', 'Room is added to the cart successfully.');
+        return redirect()->back()->with('success', 'Комната успешно добавлена в корзину.');
     }
 
     public function cartbook_submit(Request $request)
@@ -244,12 +244,20 @@ class BookingController extends Controller
             $i++;
         }
 
+        $arr_cart_time_excur = array();
+        $i=0;
+        foreach(session()->get('cart_time_excur') as $value) {
+            $arr_cart_date[$i] = $value;
+            $i++;
+        }
+
         session()->forget('cart_excursion_id');
         session()->forget('cart_adult_excur');
         session()->forget('cart_children_excur');
         session()->forget('cart_pensioner');
         session()->forget('cart_kids');
         session()->forget('cart_date');
+        session()->forget('cart_time_excur');
 
         for($i=0;$i<count($arr_cart_excursion_id);$i++)
         {
@@ -265,6 +273,7 @@ class BookingController extends Controller
                 session()->push('cart_pensioner',$arr_cart_pensioner[$i]);
                 session()->push('cart_kids',$arr_cart_kids[$i]);
                 session()->push('cart_date',$arr_cart_kids[$i]);
+                session()->push('cart_time_excur',$arr_cart_kids[$i]);
             }
         }
 
@@ -275,12 +284,13 @@ class BookingController extends Controller
     public function checkout()
     {
         if(!Auth::guard('customer')->check()) {
-            return redirect()->back()->with('error', 'You must have to login in order to checkout');
+            return redirect()->back()->with('error', 'Вы должны залогиниться чтобы оформить заказ');
         }
 
-        if(!session()->has('cart_room_id') and !session()->has('cart_book_id')) {
-            return redirect()->back()->with('error', 'There is no item in the cart');
+        if(!session()->has('cart_room_id') and !session()->has('cart_book_id') and !session()->has('cart_excursion_id')) {
+            return redirect()->back()->with('error', 'Нет заказов в корзине');
         }
+
 
         return view('front.checkout');
     }
@@ -288,11 +298,11 @@ class BookingController extends Controller
     public function payment(Request $request)
     {
         if(!Auth::guard('customer')->check()) {
-            return redirect()->back()->with('error', 'You must have to login in order to checkout');
+            return redirect()->back()->with('error', 'Вы должны залогиниться чтобы оформить заказ');
         }
 
-        if(!session()->has('cart_room_id') and !session()->has('cart_book_id')) {
-            return redirect()->back()->with('error', 'There is no item in the cart');
+        if(!session()->has('cart_room_id') and !session()->has('cart_book_id') and !session()->has('cart_excursion_id')) {
+            return redirect()->back()->with('error', 'Нет заказов в корзине');
         }
 
         $request->validate([
@@ -445,23 +455,23 @@ class BookingController extends Controller
             }
 
             $subject = 'New Order';
-            $message = 'You have made an order for hotel booking. The booking information is given below: <br>';
-            $message .= '<br>Order No: '.$order_no;
-            $message .= '<br>Transaction Id: '.$result->id;
-            $message .= '<br>Payment Method: PayPal';
-            $message .= '<br>Paid Amount: '.$paid_amount;
-            $message .= '<br>Booking Date: '.date('d/m/Y').'<br>';
+            $message = 'Вы сделали заказ на бронирование. Информация о бронировании приведена ниже: <br>';
+            $message .= '<br>Заказ Номер: '.$order_no;
+            $message .= '<br>Операция Id: '.$result->id;
+            $message .= '<br>Метод оплаты: PayPal';
+            $message .= '<br>Оплаченная сумма: '.$paid_amount;
+            $message .= '<br>Дата бронирования: '.date('d.m.Y').'<br>';
 
             for($i=0;$i<count($arr_cart_room_id);$i++) {
 
                 $r_info = Room::where('id',$arr_cart_room_id[$i])->first();
 
-                $message .= '<br>Room Name: '.$r_info->name;
-                $message .= '<br>Price Per Night: $'.$r_info->price;
-                $message .= '<br>Checkin Date: '.$arr_cart_checkin_date[$i];
-                $message .= '<br>Checkout Date: '.$arr_cart_checkout_date[$i];
-                $message .= '<br>Adult: '.$arr_cart_adult[$i];
-                $message .= '<br>Children: '.$arr_cart_children[$i].'<br>';
+                $message .= '<br>Название комнаты: '.$r_info->name;
+                $message .= '<br>Цена за ночь: $'.$r_info->price;
+                $message .= '<br>Дата заезда: '.$arr_cart_checkin_date[$i];
+                $message .= '<br>Дата выезда: '.$arr_cart_checkout_date[$i];
+                $message .= '<br>Взрослые: '.$arr_cart_adult[$i];
+                $message .= '<br>Дети: '.$arr_cart_children[$i].'<br>';
             }
 
             $customer_email = Auth::guard('customer')->user()->email;
@@ -482,11 +492,11 @@ class BookingController extends Controller
             session()->forget('billing_city');
             session()->forget('billing_zip');
 
-            return redirect()->route('home')->with('success', 'Payment is successful');
+            return redirect()->route('home')->with('success', 'Оплата произведена успешно');
         }
         else
         {
-            return redirect()->route('home')->with('error', 'Payment is failed');
+            return redirect()->route('home')->with('error', 'Платеж не произведен');
         }
 
 
@@ -599,23 +609,23 @@ class BookingController extends Controller
         }
 
         $subject = 'New Order';
-        $message = 'You have made an order for hotel booking. The booking information is given below: <br>';
-        $message .= '<br>Order No: '.$order_no;
-        $message .= '<br>Transaction Id: '.$transaction_id;
-        $message .= '<br>Payment Method: Stripe';
-        $message .= '<br>Paid Amount: '.$final_price;
-        $message .= '<br>Booking Date: '.date('d/m/Y').'<br>';
+        $message = 'Вы сделали заказ на бронирование. Информация о бронировании приведена ниже: <br>';
+        $message .= '<br>Заказ номер: '.$order_no;
+        $message .= '<br>Операция Id: '.$transaction_id;
+        $message .= '<br>Метод оплаты: Stripe';
+        $message .= '<br>Оплаченная сумма: '.$final_price;
+        $message .= '<br>Дата бронирования: '.date('d/m/Y').'<br>';
 
         for($i=0;$i<count($arr_cart_room_id);$i++) {
 
             $r_info = Room::where('id',$arr_cart_room_id[$i])->first();
 
-            $message .= '<br>Room Name: '.$r_info->name;
-            $message .= '<br>Price Per Night: $'.$r_info->price;
-            $message .= '<br>Checkin Date: '.$arr_cart_checkin_date[$i];
-            $message .= '<br>Checkout Date: '.$arr_cart_checkout_date[$i];
-            $message .= '<br>Adult: '.$arr_cart_adult[$i];
-            $message .= '<br>Children: '.$arr_cart_children[$i].'<br>';
+            $message .= '<br>Наименование комнаты: '.$r_info->name;
+            $message .= '<br>Цена за ночь: $'.$r_info->price;
+            $message .= '<br>Дата заезда: '.$arr_cart_checkin_date[$i];
+            $message .= '<br>Дата выезда: '.$arr_cart_checkout_date[$i];
+            $message .= '<br>Взрослые: '.$arr_cart_adult[$i];
+            $message .= '<br>Дети: '.$arr_cart_children[$i].'<br>';
         }
 
         $customer_email = Auth::guard('customer')->user()->email;
@@ -636,7 +646,7 @@ class BookingController extends Controller
         session()->forget('billing_city');
         session()->forget('billing_zip');
 
-        return redirect()->route('home')->with('success', 'Payment is successful');
+        return redirect()->route('home')->with('success', 'Оплата прошла успешно');
 
 
     }

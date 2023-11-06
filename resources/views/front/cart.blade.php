@@ -286,7 +286,9 @@
                                     $total_excursionprice = 0;
                                     for($i=0;$i<count($arr_cart_excursion_id);$i++)
                                     {
-                                        $excursion_data = DB::table('excursions')->where('id',$arr_cart_excursion_id[$i])->first();
+                                        $discounts = App\Models\Discount::get();
+                                        $excursion_data = App\Models\Excursion::with('discounts')->where('id',$arr_cart_excursion_id[$i])->first();
+
                                 @endphp
                                 <tr>
                                     <td>
@@ -300,7 +302,10 @@
                                     <td>₽{{ $excursion_data->price }}</td>
 
                                     <td> {{ $arr_cart_date[$i] }} </td>
-                                    <td> {{ $arr_cart_time_excur[$i] }} - {{ $excursion_data->durationExcursion }}</td>
+
+                                    <td> {{ $arr_cart_time_excur[$i] }} - {{ sum7_time($arr_cart_time_excur[$i],$excursion_data->durationExcursion)}}
+
+                                    </td>
                                     <td>
                                         Взрослые: {{ $arr_cart_adult_excur[$i] }}<br>
                                         Пенсионеры: {{ $arr_cart_pensioner[$i] }}<br>
@@ -309,22 +314,24 @@
                                     </td>
                                     <td>
                                         @php
-                                        /*
-                                            $d1 = explode('/',$arr_cart_checkin_date[$i]);
-                                            $d2 = explode('/',$arr_cart_checkout_date[$i]);
-                                            $d1_new = $d1[2].'-'.$d1[1].'-'.$d1[0];
-                                            $d2_new = $d2[2].'-'.$d2[1].'-'.$d2[0];
-                                            $t1 = strtotime($d1_new);
-                                            $t2 = strtotime($d2_new);
-                                            $diff = ($t2-$t1)/60/60/24;
-                                            echo '₽'.$room_data->price*$diff;
-                                         */
-                                        echo '₽'.$excursion_data->price;
+                                        foreach ($excursion_data->discounts as $discount){
+
+                                        $adult =  $excursion_data->price - ($excursion_data->price * $discounts[0]->discount)/100  ;
+                                        $pensioner= $excursion_data->price - ($excursion_data->price * $discounts[2]->discount)/100  ;
+                                        $children = $excursion_data->price - ($excursion_data->price * $discounts[1]->discount)/100  ;
+                                        $kids = $excursion_data->price - ($excursion_data->price * $discounts[3]->discount)/100  ;
+                                          }
+
+
                                         @endphp
+                                         {{$adult}} * {{ $arr_cart_adult_excur[$i] }} = {{$sum_adult = $adult * $arr_cart_adult_excur[$i] }} руб. <br>
+                                         {{$pensioner}} * {{ $arr_cart_pensioner[$i] }} = {{$sum_pensioner =$pensioner * $arr_cart_pensioner[$i]  }} руб. <br>
+                                         {{$children}} * {{ $arr_cart_children_excur[$i] }} = {{$sum_children = $children *  $arr_cart_children_excur[$i] }} руб. <br>
+                                         {{$kids}} * {{ $arr_cart_kids[$i] }} = {{$sum_kids = $kids *  $arr_cart_kids[$i] }} руб. <br>
                                     </td>
                                 </tr>
                                 @php
-                                    $total_excursionprice = $total_excursionprice+($excursion_data->price);
+                                    $total_excursionprice = $total_excursionprice + ($sum_adult + $sum_pensioner + $sum_children + $sum_kids);
                                 }
                                 @endphp
                                 <tr>
@@ -337,7 +344,7 @@
                     @endif
 
 
-                @if(session()->has('cart_book_id') or session()->has('cart_room_id'))
+                @if(session()->has('cart_book_id') or session()->has('cart_room_id') or session()->has('cart_excursion_id'))
                         @php
                         if(!isset( $total_roomprice)){
                               $total_roomprice =0;
@@ -345,15 +352,19 @@
                           if(!isset( $total_bookprice)){
                               $total_bookprice =0;
                          }
+                          if(!isset( $total_excursionprice)){
+                              $total_excursionprice =0;
+                         }
+
                         @endphp
-                        Всего к оплате:  ₽{{ $total_roomprice + $total_bookprice}}
+                        Всего к оплате:  ₽{{ $total_roomprice + $total_bookprice + $total_excursionprice}}
 
                 <div class="checkout mb_20">
                     <a href="{{ route('checkout') }}" class="btn btn-primary bg-website">Оформить заказ</a>
                 </div>
                 @endif
 
-                    @if(!session()->has('cart_book_id') and !session()->has('cart_room_id'))
+                    @if(!session()->has('cart_book_id') and !session()->has('cart_room_id') and !session()->has('cart_excursion_id'))
                 <div class="text-danger mb_30">
                     Корзина пустая!
                 </div>
@@ -366,3 +377,17 @@
 </div>
 @endsection
 <script src="js/stepper.min.js"></script>
+@php
+    function sum7_time()
+{
+$i = 0;
+foreach (func_get_args() as $time) {
+sscanf($time, '%d:%d', $hour, $min);
+$i += $hour * 60 + $min;
+}
+if ($h = floor($i / 60)) {
+$i %= 60;
+}
+return sprintf('%02d:%02d', $h, $i);
+}
+@endphp

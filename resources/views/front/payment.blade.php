@@ -83,6 +83,7 @@
                     @php
                     $cents = $total_price*100;
                     $customer_email = Auth::guard('customer')->user()->email;
+                    $customer_name = Auth::guard('customer')->user()->name;
                     $stripe_publishable_key = 'pk_test_51LT28GF67T3XLjgLXbAMW8YNgvDyv6Yrg7mB6yHJhfmWgLrAL79rSBPvxcbKrsKtCesqJmxlOd259nMrNx4Qlhoa00zX7rOhOq';
                     @endphp
                     <form action="{{ route('stripe',$total_price) }}" method="post">
@@ -90,12 +91,13 @@
                         <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="{{ $stripe_publishable_key }}"
-                            data-amount="{{ $cents }}"
-                            data-name="{{ env('APP_NAME') }}"
-                            data-description=""
-                            data-image="{{ asset('stripe.png') }}"
+                            data-amount="{{ $cents / 98 }}"
+                            data-name= "Покупатель:{{ $customer_name }}"
+                            data-description="Курс 98 рублей - 1 доллар США."
+                            data-image="{{ asset('uploads/stripe.png') }}"
                             data-currency="usd"
                             data-email="{{ $customer_email }}"
+                            data-panelLabel="Оплатить "
                         >
                         </script>
                     </form>
@@ -185,7 +187,7 @@
                                             <br>
                                             ({{ $arr_cart_checkin_date[$i] }} - {{ $arr_cart_checkout_date[$i] }})
                                             <br>
-                                            Adult: {{ $arr_cart_adult[$i] }}, Children: {{ $arr_cart_children[$i] }}
+                                            Взрослые: {{ $arr_cart_adult[$i] }}, Дети: {{ $arr_cart_children[$i] }}
                                         </td>
                                         <td class="p_price">
                                             @php

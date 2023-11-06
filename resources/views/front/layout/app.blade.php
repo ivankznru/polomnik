@@ -40,7 +40,20 @@
             <div class="col-md-6 right-side">
                 <ul class="right">
                     @if($global_page_data->cart_status == 1)
-                        <li class="menu"><a href="{{ route('cart') }}">{{ $global_page_data->cart_heading }}@if(session()->has('cart_room_id') and !session()->has('cart_book_id'))<sup>{{ count(session()->get('cart_room_id')) }}</sup>@endif @if(session()->has('cart_book_id') and !session()->has('cart_room_id'))<sup>{{ count(session()->get('cart_book_id')) }}</sup>@endif @if(session()->has('cart_room_id') and session()->has('cart_book_id'))<sup>{{ count(session()->get('cart_room_id')) + count(session()->get('cart_book_id')) }}</sup>@endif</a></li>
+                        <li class="menu"><a href="{{ route('cart') }}">{{ $global_page_data->cart_heading }}
+                                @if(session()->has('cart_room_id') and !session()->has('cart_book_id') and !session()->has('cart_excursion_id'))<sup>{{ count(session()->get('cart_room_id')) }}</sup>@endif
+                                @if(session()->has('cart_book_id') and !session()->has('cart_room_id') and !session()->has('cart_excursion_id'))<sup>{{ count(session()->get('cart_book_id')) }}</sup>@endif
+                                @if(session()->has('cart_excursion_id') and !session()->has('cart_room_id') and !session()->has('cart_book_id'))<sup>{{ count(session()->get('cart_excursion_id')) }}</sup>@endif
+
+                                @if(session()->has('cart_room_id') and session()->has('cart_book_id') and !session()->has('cart_excursion_id'))<sup>{{ count(session()->get('cart_room_id')) + count(session()->get('cart_book_id'))}}</sup>@endif
+                                @if(session()->has('cart_room_id') and !session()->has('cart_book_id') and session()->has('cart_excursion_id'))<sup>{{ count(session()->get('cart_room_id')) + count(session()->get('cart_excursion_id'))}}</sup>@endif
+
+                                @if(session()->has('cart_book_id') and !session()->has('cart_room_id') and session()->has('cart_excursion_id'))<sup>{{ count(session()->get('cart_book_id')) + count(session()->get('cart_excursion_id'))}}</sup>@endif
+
+                            @if(session()->has('cart_room_id') and session()->has('cart_book_id') and session()->has('cart_excursion_id'))<sup>{{ count(session()->get('cart_room_id')) + count(session()->get('cart_book_id')) + count(session()->get('cart_excursion_id'))}}</sup>@endif
+                        </a></li>
+
+
                     @endif
 
                     @if($global_page_data->checkout_status == 1)
@@ -112,10 +125,10 @@
                             <a href="javascript:void;" class="nav-link dropdown-toggle">Календарь</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Мусульманских праздников</a>
+                                    <a href="{{ route('calendarmuslim.index') }}" class="nav-link">Мусульманских религиозных дат</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Православных праздников</a>
+                                    <a href="{{ route('calendarchrist.index') }}" class="nav-link">Христианских религиозных дат</a>
                                 </li>
                             </ul>
                         </li>

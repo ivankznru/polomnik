@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminAmenityController;
 use App\Http\Controllers\Admin\AdminAuthorController;
 use App\Http\Controllers\Admin\AdminBookController;
+use App\Http\Controllers\Admin\AdminCalendarchristController;
+use App\Http\Controllers\Admin\AdminCalendarmuslimController;
 use App\Http\Controllers\Admin\AdminChurchController;
 use App\Http\Controllers\Admin\AdminDiscountController;
 use App\Http\Controllers\Admin\AdminDurationController;
@@ -35,6 +37,8 @@ use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\BookController;
 use App\Http\Controllers\Front\BookingController;
+use App\Http\Controllers\Front\CalendarchristController;
+use App\Http\Controllers\Front\CalendarmuslimController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\ExcursionController;
 use App\Http\Controllers\Front\FaqController;
@@ -100,10 +104,24 @@ Route::post('/review-store',[BookController::class, 'reviewstore'])->name('revie
 
 /* Front для экскурсий */
 Route::get('/excursion', [ExcursionController::class, 'index'])->name('index-excursion');
-Route::get('/excursion/{id}', [ExcursionController::class, 'single_book'])->name('excursion_detail');
+Route::get('/excursion/{id}', [ExcursionController::class, 'single_excursion'])->name('excursion_detail');
 Route::post('/reviewexcur-store',[ExcursionController::class, 'reviewexcurstore'])->name('reviewexcur.store');
 /* окончание Front для экскурсий */
 
+
+/* Front для мусульманских религиозных дат*/
+
+Route::get('calendarmuslim/index', [CalendarmuslimController::class, 'index'])->name('calendarmuslim.index');
+Route::post('calendarmuslim', [CalendarmuslimController::class, 'store'])->name('calendarmuslim.store');
+Route::patch('calendarmuslim/update/{id}', [CalendarmuslimController::class, 'update'])->name('calendarmuslim.update');
+Route::delete('calendarmuslim/destroy/{id}', [CalendarmuslimController::class, 'destroy'])->name('calendarmuslim.destroy');
+
+/* Front для христианских религиозных дат*/
+
+Route::get('calendarchrist/index', [CalendarchristController::class, 'index'])->name('calendarchrist.index');
+Route::post('calendarchrist', [CalendarchristController::class, 'store'])->name('calendarchrist.store');
+Route::patch('calendarchrist/update/{id}', [CalendarchristController::class, 'update'])->name('calendarchrist.update');
+Route::delete('calendarchrist/destroy/{id}', [CalendarchristController::class, 'destroy'])->name('calendarchrist.destroy');
 
 
 /* Customer */
@@ -401,5 +419,27 @@ Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gall
     Route::get('/admin/placevisit/delete/{id}', [AdminPlacevisitController::class, 'delete'])->name('admin_placevisit_delete')->middleware('admin:admin');
 
     /* окончание Admin для экскурсий  */
+
+    /* начало Admin для мусульманского календаря */
+    Route::get('/admin/calendarmuslim/view', [AdminCalendarmuslimController::class, 'index'])->name('admin.calendarmuslim.view');
+    Route::get('/admin/calendarmuslim/add', [AdminCalendarmuslimController::class, 'add'])->name('admin.calendarmuslim.add');
+    Route::post('/admin/calendarmuslim/store', [AdminCalendarmuslimController::class, 'store'])->name('admin.calendarmuslim.store');
+    Route::get('/admin/calendarmuslim/edit/{id}', [AdminCalendarmuslimController::class, 'edit'])->name('admin.calendarmuslim.edit');
+    Route::post('/admin/calendarmuslim/update/{id}', [AdminCalendarmuslimController::class, 'update'])->name('admin.calendarmuslim.update');
+    Route::get('/admin/calendarmuslim/delete/{id}', [AdminCalendarmuslimController::class, 'delete'])->name('admin.calendarmuslim.delete');
+    /* окончание Admin для мусульманского календаря */
+
+
+    /* начало Admin для христианского календаря */
+
+    Route::get('/admin/calendarchrist/view', [AdminCalendarchristController::class, 'index'])->name('admin.calendarchrist.view');
+    Route::get('/admin/calendarchrist/add', [AdminCalendarchristController::class, 'add'])->name('admin.calendarchrist.add');
+    Route::post('/admin/calendarchrist/store', [AdminCalendarchristController::class, 'store'])->name('admin.calendarchrist.store');
+    Route::get('/admin/calendarchrist/edit/{id}', [AdminCalendarchristController::class, 'edit'])->name('admin.calendarchrist.edit');
+    Route::post('/admin/calendarchrist/update/{id}', [AdminCalendarchristController::class, 'update'])->name('admin.calendarchrist.update');
+    Route::get('/admin/calendarchrist/delete/{id}', [AdminCalendarchristController::class, 'delete'])->name('admin.calendarchrist.delete');
+
+    /* окончание Admin для христианского календаря */
+
 
 });

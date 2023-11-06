@@ -93,6 +93,13 @@
                     <li class="{{ Request::is('admin/placevisit/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_placevisit_view') }}"><i class="fa fa-angle-right"></i>Место посещения</a></li>
                 </ul>
             </li>
+
+            <li class="{{ Request::is('admin/calendarmuslim/view')||Request::is('admin/calendarchrist/view')? 'active' : '' }}"><a href="#" class="nav-link has-dropdown"><i class="fa fa-arrows"></i><span>Календарь религиозных дат</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/calendarmuslim/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.calendarmuslim.view') }}"><i class="fa fa-angle-right"></i>Мусульмнских</a></li>
+                    <li class="{{ Request::is('admin/calendarchrist/view') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.calendarchrist.view') }}"><i class="fa fa-angle-right"></i>Христианских</a></li>
+                </ul>
+            </li>
         </ul>
     </aside>
 </div>

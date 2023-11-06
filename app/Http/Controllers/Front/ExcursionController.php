@@ -5,24 +5,69 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Discount;
 use App\Models\Excursion;
+use App\Models\Placevisit;
 use App\Models\ReviewexcurRating;
+use App\Models\Whatday;
 use Illuminate\Http\Request;
 
 class ExcursionController extends Controller
 {
     public function index(Request $request)
     {
-
+          $placevisits= Placevisit::get();
           $discounts = Discount::get();
-
+          $whatdays = Whatday::get();
         $queryExcursion= Excursion::query();
+
+        if(isset($request->whatdays) && ($request->whatdays !=null))
+        {
+            $queryExcursion->whereHas('whatdays',function ($q) use ($request){
+                $q->whereIn('whatday_id',$request->whatdays);
+            }) ;
+        }
+        if(isset($request->placevisits) && ($request->placevisits !=null))
+        {
+            $queryExcursion->whereHas('placevisits',function ($q) use ($request){
+                $q->whereIn('placevisit_id',$request->placevisits);
+            }) ;
+        }
+
+
+        if(isset($request->priceMin) && ($request->priceMin !=null))
+        {
+            $queryExcursion->where('price','>=',$request->priceMin) ;
+        }
+
+        if(isset($request->priceMax) && ($request->priceMax !=null))
+        {
+
+            $queryExcursion->where('price','<=',$request->priceMax) ;
+        }
+
+        if(isset($request->durationExcursiondMin) && ($request->durationExcursiondMin !=null))
+        {
+            $queryExcursion->where('durationExcursion','>=',$request->durationExcursiondMin) ;
+        }
+
+        if(isset($request->durationExcursionMax) && ($request->durationExcursionMax !=null))
+        {
+
+            $queryExcursion->where('durationExcursion','<=',$request->durationExcursionMax) ;
+        }
+
+        if(isset($request->title) && ($request->title !=null))
+        {
+            $queryExcursion->where('title',$request->title) ;
+        }
+
+
 
         $excursions = $queryExcursion->get();
 
-        return view('front.excursions.excursion',compact('excursions','discounts'));
+        return view('front.excursions.excursion',compact('excursions','discounts','whatdays','placevisits'));
     }
 
-    public function single_book($id)
+    public function single_excursion($id)
     {
         $avgStar = ReviewexcurRating::where('excursion_id', $id)->pluck('star_rating')->avg();
         $avgStar1 = round($avgStar);
