@@ -210,11 +210,6 @@
                         </div>
 
                         <div style="padding-top:8px;"></div>
-                            <form action="" method="post">
-                                @csrf
-                                <input type="hidden" name="book_id" value="{{ $single_excursion_data->id }}">
-                                <button type="submit" class="btn btn-primary">Забронировать</button>
-                            </form>
 
                     </div>
 
@@ -237,21 +232,34 @@
                             <div><div class="excursions-detail__schedule-title">Продолжит.</div>
                                 <div class="">{{sum1_time($single_excursion_data->durationExcursion,'00:00')}} час.</div></div>
                         </div>
+                        <div class="excursions-detail__schedule-item schedule-calendar-icon">
+                            <div><div class="excursions-detail__schedule-title">График экскурсии</div>
+                                <div class="">с {{$c_startDate}} по {{$c_finishDate}} год.</div></div>
+                        </div>
+
+                    </div>
+                    <div class="excursions-detail__schedule-content">
+                        <div class="excursions-detail__schedule-item schedule-hourglass-icon">
+                            <div><div class="excursions-detail__schedule-title">Время проведения экскурсии</div>
+                                @foreach ($single_excursion_data->durations as $duration)
+                                    <div class="">{{sum1_time($duration->start,'00:00')}} - {{ sum1_time($duration->start,$single_excursion_data->durationExcursion)}} час.</div>
+                                @endforeach</div>
+                        </div>
                         <div class="excursions-detail__schedule-item schedule-marker-icon">
                             <div><div class="excursions-detail__schedule-title">Пункт сбора</div>
                                 <div class="">{{$single_excursion_data->placeMeeting}}</div></div>
                         </div>
                     </div>
                     <div class="excursions-detail__schedule-content">
-                        <div class="excursions-detail__schedule-item schedule-hourglass-icon">
-                            <div><div class="excursions-detail__schedule-title">Время проведения экскурсии</div>
-                                <div>
-                                @foreach ($single_excursion_data->durations as $duration)
-                                <div class="">{{sum1_time($duration->start,'00:00')}} - {{ sum1_time($duration->start,$single_excursion_data->durationExcursion)}}</div></div>
-                                @endforeach
-                            </div>
+                        <div class="excursions-detail__schedule-item  ">
+                            <i class="fa fa-bus" style="transform: scale(1.5,1.2);margin-right:10px"></i>
+                            <div><div class="excursions-detail__schedule-title">Транспорт</div>
+                                <div class="">{{$single_excursion_data->transport}}</div></div>
                         </div>
+
                     </div>
+
+
                     @foreach ($single_excursion_data->discounts as $discount)
                     <div class="excursions-detail__schedule-content ">
                         <div class="excursions-detail__schedule-item schedule-ruble-icon">
@@ -283,27 +291,24 @@
         <div class="container" style="width: 700px">
             <div class="card  " style="background-color: transparent;border-color: white;box-shadow: 0 0 20px 0 #ddd;" >
             <h2>Забронируйте эту экскурсию</h2>
-            <form action="" method="post">
+            <form action="{{ route('cartexcur_submit') }}" method="post">
                 @csrf
                 <input type="hidden" name="excursion_id" value="{{ $single_excursion_data->id }}">
-                {{$c_daysOfWeekHighlighted}}
-                {{$c_finishDate}}
-                {{$c_daysOfWeekDisabled}}
+
                     <div class="input-group-addon mb_20 ">
                         <i class="fa fa-calendar" style="margin-right:5px"></i>
                         <label for="" style="margin-bottom:5px">Дата экскурсии</label>
                     <input class="form-control" id="date" name="date" data-date-end-date={{$c_finishDate}} data-date-days-Of-Week-Disabled={{$c_daysOfWeekDisabled}} data-date-days-Of-Week-Highlighted={{$c_daysOfWeekHighlighted}} placeholder="день.месяц.год" type="text"/>
                 </div>
-
-                <div class="form-group mb_20">
+                <div class="form-group">
                     <i class="fa fa-clock-o" style="margin-right:5px"></i>
-                    <label for="discounts" style="margin-bottom:5px">Время экскурсии</label>
-                        <select id="durations" name="durations[]" class="form block w-full mt-1">
-                            @foreach ($single_excursion_data->durations as $duration)
-                                <option value=" " >
-                                    {{sum1_time($duration->start,'00:00')}} - {{ sum1_time($duration->start,$single_excursion_data->durationExcursion)  }}</option>
-                            @endforeach
-                        </select>
+                    <label for="time_excur">Время экскурсии</label>
+                    <select class="form-control" id="time_excur" name="time_excur">
+                        <option>Выберите время экскурсии</option>
+                        @foreach($single_excursion_data->durations as $duration)
+                            <option value="{{sum1_time($duration->start,'00:00')}}">{{sum1_time($duration->start,'00:00')}} - {{ sum1_time($duration->start,$single_excursion_data->durationExcursion)  }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group mb_20">
                     <i class="fa fa-male" style="margin-right:5px"></i>
@@ -312,7 +317,7 @@
                 </div>
                 <div class="form-group mb_20">
                     <label for="" style="margin-bottom:5px" >Пенсионеры</label>
-                    <input type="number" name="adult" class="form-control" min="1" max="30" placeholder="Пенсионеры">
+                    <input type="number" name="pensioner" class="form-control" min="1" max="30" placeholder="Пенсионеры">
                 </div>
                 <div class="form-group mb_20">
                     <i class="fa fa-child" style="margin-right:5px"></i>
@@ -322,7 +327,7 @@
                 <div class="form-group mb_20">
                     <i class="fa fa" style="margin-right:5px"></i>
                     <label for="" style="margin-bottom:5px">Дети до 5 лет</label>
-                    <input type="number" name="children" class="form-control" min="0" max="30" placeholder="Дети до 14 лет">
+                    <input type="number" name="kids" class="form-control" min="0" max="30" placeholder="Дети до 14 лет">
                 </div>
                 <button type="submit" class="btn btn-primary">Добавить в корзину</button>
             </form>

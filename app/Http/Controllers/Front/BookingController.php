@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Duration;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
@@ -82,6 +83,25 @@ class BookingController extends Controller
 
 
         return redirect()->back()->with('success', 'Книга добавлена в корзину успешно.');
+    }
+
+    public function cartexcur_submit(Request $request)
+    {
+        $request->validate([
+            'excursion_id' => 'required',
+        ]);
+
+
+
+        session()->push('cart_excursion_id',$request->excursion_id);
+        session()->push('cart_adult_excur',$request->adult);
+        session()->push('cart_children_excur',$request->children);
+        session()->push('cart_pensioner',$request->pensioner);
+        session()->push('cart_kids',$request->kids);
+        session()->push('cart_date',$request->date);
+        session()->push('cart_time_excur',$request->time_excur);
+
+        return redirect()->back()->with('success', 'Экскурсия добавлена в корзину успешно.');
     }
 
     public function cart_view()
@@ -178,6 +198,77 @@ class BookingController extends Controller
         }
 
         return redirect()->back()->with('success', 'Книга удалена.');
+
+    }
+
+    public function cartexcur_delete($id)
+    {
+        $arr_cart_excursion_id = array();
+        $i=0;
+        foreach(session()->get('cart_excursion_id') as $value) {
+            $arr_cart_excursion_id[$i] = $value;
+            $i++;
+        }
+        $arr_cart_adult_excur = array();
+        $i=0;
+        foreach(session()->get('cart_adult_excur') as $value) {
+            $arr_cart_adult_excur[$i] = $value;
+            $i++;
+        }
+
+        $arr_cart_children_excur = array();
+        $i=0;
+        foreach(session()->get('cart_children_excur') as $value) {
+            $arr_cart_children_excur[$i] = $value;
+            $i++;
+        }
+
+        $arr_cart_pensioner = array();
+        $i=0;
+        foreach(session()->get('cart_pensioner') as $value) {
+            $arr_cart_pensioner[$i] = $value;
+            $i++;
+        }
+
+        $arr_cart_kids = array();
+        $i=0;
+        foreach(session()->get('cart_kids') as $value) {
+            $arr_cart_kids[$i] = $value;
+            $i++;
+        }
+
+        $arr_cart_date = array();
+        $i=0;
+        foreach(session()->get('cart_date') as $value) {
+            $arr_cart_date[$i] = $value;
+            $i++;
+        }
+
+        session()->forget('cart_excursion_id');
+        session()->forget('cart_adult_excur');
+        session()->forget('cart_children_excur');
+        session()->forget('cart_pensioner');
+        session()->forget('cart_kids');
+        session()->forget('cart_date');
+
+        for($i=0;$i<count($arr_cart_excursion_id);$i++)
+        {
+            if($arr_cart_excursion_id[$i] == $id)
+            {
+                continue;
+            }
+            else
+            {
+                session()->push('cart_excursion_id',$arr_cart_excursion_id[$i]);
+                session()->push('cart_adult_excur',$arr_cart_adult_excur[$i]);
+                session()->push('cart_children_excur',$arr_cart_children_excur[$i]);
+                session()->push('cart_pensioner',$arr_cart_pensioner[$i]);
+                session()->push('cart_kids',$arr_cart_kids[$i]);
+                session()->push('cart_date',$arr_cart_kids[$i]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Экскурсия удалена.');
 
     }
 

@@ -79,6 +79,9 @@ Route::post('/payment/stripe/{price}', [BookingController::class, 'stripe'])->na
 Route::post('/booking/booksubmit', [BookingController::class, 'cartbook_submit'])->name('cartbook_submit');
 Route::get('/cartbook/delete/{id}', [BookingController::class, 'cartbook_delete'])->name('cartbook_delete');
 
+Route::post('/booking/excursionsubmit', [BookingController::class, 'cartexcur_submit'])->name('cartexcur_submit');
+Route::get('/cartexcursion/delete/{id}', [BookingController::class, 'cartexcur_delete'])->name('cartexcur_delete');
+
 
 Route::get('/prayorder/trebi', [PrayorderController::class, 'indexTrebi'])->name('indexTrebi');
 Route::post('/prayorder/trebi', [PrayorderController::class, 'store'])->name('store');

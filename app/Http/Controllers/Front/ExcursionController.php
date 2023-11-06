@@ -45,7 +45,7 @@ class ExcursionController extends Controller
         $c_finishDate = date('d.m.Y', strtotime($single_excursion_data->finishDateExcursion));
 
 
-        return view('front.excursions.excursion_detail', compact('single_excursion_data','avgStar','avgStar1','reviewCount','c_daysOfWeekHighlighted','c_daysOfWeekDisabled','c_finishDate'));
+        return view('front.excursions.excursion_detail', compact('single_excursion_data','avgStar','avgStar1','reviewCount','c_daysOfWeekHighlighted','c_daysOfWeekDisabled','c_finishDate','c_startDate'));
     }
 
     public function reviewexcurstore(Request $request){
