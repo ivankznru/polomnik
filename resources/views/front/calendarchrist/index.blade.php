@@ -172,7 +172,7 @@
                     });
                 },
                 eventClick: function(event){
-                    if (event.id > 2) {
+                    if (event.id > 5) {
                         var id = event.id;
 
                         if (confirm('Вы действительно хотите удалить')) {

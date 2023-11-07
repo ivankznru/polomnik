@@ -211,7 +211,7 @@
                                 </table>
                                 <div style="padding-top:5px;"></div>
                                 <div class="" >
-                                    {{ $excursion->description }}
+                                    {!! $excursion->description !!}
                                 </div>
                             </div>
 
