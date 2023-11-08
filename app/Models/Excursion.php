@@ -58,6 +58,8 @@ class Excursion extends Model
     {
         return $this->belongsToMany(Placevisit::class,'excursion_placevisit','excursion_id','placevisit_id');
     }
+
+
 }
 
 

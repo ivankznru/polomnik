@@ -55,9 +55,9 @@ class ExcursionController extends Controller
             $queryExcursion->where('durationExcursion','<=',$request->durationExcursionMax) ;
         }
 
-        if(isset($request->title) && ($request->title !=null))
+        if(isset($request->name) && ($request->name !=null))
         {
-            $queryExcursion->where('title',$request->title) ;
+            $queryExcursion->where('name',$request->name) ;
         }
 
 

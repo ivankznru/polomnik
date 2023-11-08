@@ -237,7 +237,7 @@
                             <div class="filter-content collapse show" id="collapse_1" style="">
                                 <div class="card-body">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Введите название экскурсии" name="title">
+                                        <input type="text" class="form-control" placeholder="Введите название экскурсии" name="name">
                                     </div>
                                 </div> <!-- card-body.// -->
                             </div>

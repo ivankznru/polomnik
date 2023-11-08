@@ -196,7 +196,8 @@
                 <div class="item">
                     <h2 class="heading">Ссылки сайта</h2>
                     <ul class="useful-links">
-                        <li><a href="rooms.html">Размещение</a></li>
+                        <li><a href="{{route('index-excursion')}}" >Экскурсии</a></li>
+                        <li><a href="{{route('index-book')}}" >Литература</a></li>
                         @if($global_page_data->photo_gallery_status == 1)
                             <li><a href="{{ route('photo_gallery') }}">{{ $global_page_data->photo_gallery_heading }}</a></li>
                         @endif
@@ -253,7 +254,7 @@
                             <i class="fa fa-volume-control-phone"></i>
                         </div>
                         <div class="right">
-                            religious_tourism@mail.ru
+                            843-222-3333
                         </div>
                     </div>
                     <div class="list-item">
@@ -261,16 +262,10 @@
                             <i class="fa fa-envelope-o"></i>
                         </div>
                         <div class="right">
-                            843-222-3333
+                            religious_tourism@mail.ru
                         </div>
                     </div>
-                    <ul class="social">
-                        <li><a href=""><i class="fa fa-facebook-f"></i></a></li>
-                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                        <li><a href=""><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                    </ul>
+
                 </div>
             </div>
 

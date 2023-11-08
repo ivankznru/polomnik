@@ -368,7 +368,7 @@
             <div class="col-sm-10 mt-4 ">
                 <form class="py-2 px-4" action="{{route('reviewexcur.store')}}" style="box-shadow: 0 0 20px 0 #ddd;" method="POST" autocomplete="off">
                     @csrf
-                    <input type="hidden" name="book_id" value="{{$single_excursion_data->id}}">
+                    <input type="hidden" name="excursion_id" value="{{$single_excursion_data->id}}">
                     <div class="row justify-content-end mb-1">
                         <div class="col-sm-8 float-right">
                             @if(Session::has('flash_msg_success'))

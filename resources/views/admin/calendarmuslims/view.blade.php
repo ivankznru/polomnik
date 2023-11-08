@@ -38,7 +38,7 @@
                                       {{ $row-> start_date }}
                                     </td>
                                     <td>
-                                        {{ $row-> start_date }}
+                                        {{ $row-> end_date }}
                                     </td>
                                     <td class="pt_10 pb_10">
                                         <a href="{{ route('admin.calendarmuslim.edit',$row->id) }}" class="btn btn-primary">Изменить</a>

@@ -37,7 +37,9 @@
                     <div class="section-title">Краткое описание заказа</div>
                     <p class="section-lead">Ниже подробно приведена информация :</p>
                     <hr class="invoice-above-table">
-                    <div class="table-responsive">
+                    @php $d=0 @endphp
+                    @if($d==1)
+                   <div class="table-responsive">
                         <table class="table table-striped table-hover table-md">
                             <tr>
                                 <th>SL</th>
@@ -80,6 +82,44 @@
                             @endforeach
                         </table>
                     </div>
+                    @endif
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-md">
+                            <tr>
+                                <th>SL</th>
+                                <th>Название экскурсии</th>
+                                <th class="text-center">Дата </th>
+                                <th class="text-center">Время</th>
+                                <th class="text-center">Число взрослых</th>
+                                <th class="text-center">Число пенсионеров</th>
+                                <th class="text-center">Число детей 5-14 лет</th>
+                                <th class="text-center">Число детей до 5 лет</th>
+                                <th class="text-right">Промежуточный итог</th>
+                            </tr>
+                            @php $total = 0; @endphp
+                            @foreach($orderexcur_detail as $item)
+                                @php
+                                    $excursion_data = \App\Models\Excursion::where('id',$item->excursion_id)->first();
+                                @endphp
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $excursion_data->name }}</td>
+                                    <td>{{ $item->date }}</td>
+                                    <td>{{ $item->time }} - {{sum10_time($item->time,$excursion_data->durationExcursion)}}</td>
+                                    <td class="text-center">{{ $item->adult }}</td>
+                                    <td class="text-center">{{ $item->pensioner}}</td>
+                                    <td class="text-center">{{ $item->children }}</td>
+                                    <td class="text-center">{{ $item->kids }}</td>
+                                    <td class="text-right">
+                                        ₽{{$sub= $item->subtotal }}
+                                    </td>
+                                </tr>
+                                @php
+                                    $total += $sub;
+                                @endphp
+                            @endforeach
+                        </table>
+                    </div>
                     <div class="row mt-4">
                         <div class="col-lg-12 text-right">
                             <div class="invoice-detail-item">
@@ -98,3 +138,17 @@
     </div>
 </div>
 @endsection
+@php
+    function sum10_time()
+{
+$i = 0;
+foreach (func_get_args() as $time) {
+sscanf($time, '%d:%d', $hour, $min);
+$i += $hour * 60 + $min;
+}
+if ($h = floor($i / 60)) {
+$i %= 60;
+}
+return sprintf('%02d:%02d', $h, $i);
+}
+@endphp
